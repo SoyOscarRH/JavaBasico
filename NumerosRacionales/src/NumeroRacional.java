@@ -1,17 +1,19 @@
+
+
 import java.util.Scanner;
 
 /**==================================================
  * ================= CLASE RACIONAL =================
  * ==================================================
  */
-public class Racional {
+public class NumeroRacional {
     // ======= VARIABLE  ===================
     private int numerador, denominador;
     public String ID;
     Scanner EscanerDelTeclado = new Scanner(System.in);
 
     //======== CONSTRUCTORES ===============
-    public Racional(){
+    public NumeroRacional(){
         System.out.print("Dame los datos de tu racional:");
         System.out.print("\nNumerador: ");
         numerador = EscanerDelTeclado.nextInt();
@@ -20,12 +22,12 @@ public class Racional {
         System.out.print("\nNombre del Racional: ");
         ID = EscanerDelTeclado.next();
     }
-    public Racional(int numerador){
+    public NumeroRacional(int numerador){
         this.numerador = numerador;
         this.denominador = 1;
         ID = "";
     }
-    public Racional(int numerador, int denominador){
+    public NumeroRacional(int numerador, int denominador){
         this.numerador = numerador;
         this.denominador = denominador;
         ID = "";
@@ -38,8 +40,8 @@ public class Racional {
 
 
     // =======  SUMA ============
-    public Racional Suma(Racional A, Racional B){
-        Racional Resultado = new Racional();
+    public NumeroRacional Suma(NumeroRacional A, NumeroRacional B){
+        NumeroRacional Resultado = new NumeroRacional();
         if (A.denominador == A.denominador){
             Resultado.numerador=(A.numerador+B.numerador);
             Resultado.denominador= A.denominador;
@@ -50,9 +52,9 @@ public class Racional {
         }
         return Resultado;
     }
-    public Racional Resta(Racional A, Racional B){
+    public NumeroRacional Resta(NumeroRacional A, NumeroRacional B){
         B.numerador = B.numerador*-1;
-        Racional Resultado = Suma(A,B);
+        NumeroRacional Resultado = Suma(A,B);
 
         return Resultado;
     }

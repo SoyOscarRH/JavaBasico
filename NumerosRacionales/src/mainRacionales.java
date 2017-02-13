@@ -1,6 +1,8 @@
+
+
 import java.util.Scanner;
 
-public class main {
+public class mainRacionales {
     public static void main(String[] args){
 
 
@@ -10,9 +12,9 @@ public class main {
 
         int numeroDeRacionales = EscanerDelTeclado.nextInt();
 
-        Racional[] ArraydeRacionales = new Racional[numeroDeRacionales];
+        NumeroRacional[] ArraydeRacionales = new NumeroRacional[numeroDeRacionales];
         for (int i = 0; i < numeroDeRacionales; i++){
-            ArraydeRacionales[i] = new Racional();
+            ArraydeRacionales[i] = new NumeroRacional();
         }
 
         ArraydeRacionales[2] = ArraydeRacionales[2].Resta(ArraydeRacionales[0], ArraydeRacionales[1]);
