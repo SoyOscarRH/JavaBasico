@@ -14,13 +14,14 @@ public class NumeroRacional {
 
     //======== CONSTRUCTORES ===============
     public NumeroRacional(){
-        System.out.print("Dame los datos de tu racional:");
-        System.out.print("\nNumerador: ");
-        numerador = EscanerDelTeclado.nextInt();
-        System.out.print("\nDenominador: ");
-        denominador = EscanerDelTeclado.nextInt();
-        System.out.print("\nNombre del Racional: ");
+        System.out.println("Datos Racional");
+        System.out.println("Nombre del Racional: ");
         ID = EscanerDelTeclado.next();
+        System.out.println("Numerador: ");
+        numerador = EscanerDelTeclado.nextInt();
+        System.out.println("Denominador: ");
+        denominador = EscanerDelTeclado.nextInt();
+
     }
     public NumeroRacional(int numerador){
         this.numerador = numerador;
@@ -35,7 +36,7 @@ public class NumeroRacional {
 
     // =======  MUESTRA DATOS ============
     public void MuestraNumero(){
-        System.out.println(numerador+"/"+denominador);
+        System.out.println(ID+" "+numerador+"/"+denominador);
     }
 
 

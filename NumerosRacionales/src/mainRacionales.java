@@ -8,19 +8,13 @@ public class mainRacionales {
 
         Scanner EscanerDelTeclado = new Scanner(System.in);
         System.out.println("===== Programa Aritmetico Racional ===");
-        System.out.println("Elige cuantos datos deseas añadir: ");
 
-        int numeroDeRacionales = EscanerDelTeclado.nextInt();
+        NumeroRacional A = new NumeroRacional();
+        NumeroRacional B = new NumeroRacional();
+        NumeroRacional C = new NumeroRacional(1,1);
 
-        NumeroRacional[] ArraydeRacionales = new NumeroRacional[numeroDeRacionales];
-        for (int i = 0; i < numeroDeRacionales; i++){
-            ArraydeRacionales[i] = new NumeroRacional();
-        }
+        A.MuestraNumero();
+        B.MuestraNumero();
 
-        ArraydeRacionales[2] = ArraydeRacionales[2].Resta(ArraydeRacionales[0], ArraydeRacionales[1]);
-
-        for (int i = 0; i < numeroDeRacionales; i++){
-            ArraydeRacionales[i].MuestraNumero();
-        }
     }
 }
