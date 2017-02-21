@@ -10,7 +10,7 @@ public class menuUsuarioRacional{                                               
         ArrayList<NumeroRacional> listaNumeros = new ArrayList<NumeroRacional>();   //Crea una lista de Numeros Racionales
     
         do {                                                                        //==== MENU EN SI DEL USUARIO
-            System.out.println("\n== Menu de Opciones ===");                        //Crea
+            System.out.println("\n\n\n\n\n== Menu de Opciones ===");                //Crea
             System.out.println("1)Crear nuevo Numero\t2)Muestra Numeros");          //Crea o muestra Racionales
             System.out.println("3)Suma\t4)Resta\t5)Multiplicacion\t6)Division");    //Operaciones Basicas
             System.out.println("\nDame tu accion: ");                               //Pide tu accion
@@ -22,10 +22,12 @@ public class menuUsuarioRacional{                                               
                 listaNumeros.add(temporal);
             }
             else if(menu==2){
-                for (int i=0; i<=numeroActual ;i++) {
+                System.out.println("\n\n\n===================");
+                for (int i=0; i<=numeroActual ;i++){
                     NumeroRacional temporal = listaNumeros.get(i);
                     temporal.MuestraNumero();
                 }
+                System.out.println("===================");
             }
             else if(menu==3){
 

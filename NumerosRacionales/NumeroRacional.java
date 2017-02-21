@@ -23,7 +23,6 @@ public class NumeroRacional {
     }
 
     public void MuestraNumero(){
-        System.out.println("Datos Racional #"+ID);
-        System.out.println(numerador+"/"+denominador);
+        System.out.println("Numero #"+ID+" :"+numerador+"/"+denominador);
     }
 }
