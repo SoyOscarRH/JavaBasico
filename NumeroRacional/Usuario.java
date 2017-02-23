@@ -11,7 +11,8 @@ public class Usuario {
         
         String mensaje = "\n\n\n\n\n================ MENU DE OPCIONES ==============\n";
         mensaje += "1)Crear Racional\n2)Muestra Numeros\n3)Operacion entre Racionales";
-        mensaje += "\n4)Ordena el Conjunto de Numeros\n0)Salir\n\nDame tu accion: ";
+        mensaje += "\n4)Ejemplo de Comparacion\n5)El numero Mayor\n6)El numero Menor";
+        mensaje += "\n7)Ordena el Conjunto de Numeros\n0)Salir\n\nDame tu accion: ";
 
         do {                               
             System.out.print(mensaje);														//==== MENU EN SI DEL USUARIO
@@ -27,8 +28,10 @@ public class Usuario {
             }
             if (menu == 2) {listaX.muestraElementos();}
             if (menu == 3) {listaX.generaOperacion();}
-            if (menu == 4) {listaX.ordenaElementos();}
-
+            if (menu == 4) {listaX.comparaElementos(0,1);}
+            if (menu == 5) {listaX.muestraMayor();}
+            if (menu == 6) {listaX.muestraMenor();}
+            if (menu == 7) {listaX.ordenaElementos();}
         }
 
         while (menu != 0); 
