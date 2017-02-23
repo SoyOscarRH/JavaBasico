@@ -1,6 +1,6 @@
 import java.util.*;                                                                 		//Añade API en general
 
-public class ListaDeRacionales {
+public class ArraydeRacionales {
     private Racional[] listaNumeros;
 	Scanner escanerDelTeclado = new Scanner(System.in);                     				//Aqui esta el scanner para la entrada
 
@@ -10,8 +10,8 @@ public class ListaDeRacionales {
     // ========== MUESTRA LOS ELEMENTOS  =============
 	public void muestraElementos(){
 		System.out.println("\n=========================");                     				//Muestro el menu
-        for (int i = 0; i < listaNumeros.size(); i++)                      					//Recorre nuestro list
-            System.out.println(listaNumeros.get(i));
+        for (int i = 0; i < listaNumeros.length; i++)                      					//Recorre nuestro list
+            System.out.println(listaNumeros[i]);
         System.out.println("=========================");                            		//Salida de todo
 	}
 
@@ -21,13 +21,13 @@ public class ListaDeRacionales {
         String tempString = escanerDelTeclado.nextLine();                                  	//Y da un scanner
         tempString = tempString.replaceAll("\\s","");                               		//Quitemos espacios por si los puso
 
-        if(tempString.length()!=5 && tempString.charAt(1)!='='){generaOperacion();}			//Si algo salio mal, repite
+        if(tempString.length() !=5 && tempString.charAt(1)!='='){generaOperacion();}			//Si algo salio mal, repite
 
         try {																				//Intenta pasarlo a numeros
         	System.out.println("Entre");
-        	Racional A = listaNumeros.get(Character.getNumericValue(tempString.charAt(2)));	//Ponemos operadores 
-        	Racional B = listaNumeros.get(Character.getNumericValue(tempString.charAt(4)));	//Ponemos operadores 
-        	Racional C = listaNumeros.get(Character.getNumericValue(tempString.charAt(0)));	//Ponemos operadores
+        	Racional A = listaNumeros[Character.getNumericValue(tempString.charAt(2))];	//Ponemos operadores 
+        	Racional B = listaNumeros[Character.getNumericValue(tempString.charAt(4))];	//Ponemos operadores 
+        	Racional C = listaNumeros[Character.getNumericValue(tempString.charAt(0))];	//Ponemos operadores
 
         	if(tempString.charAt(3) == '+'){C.Suma(A,B); C.toString();}
         	if(tempString.charAt(3) == '-'){C.Resta(A,B); C.toString();}
@@ -39,7 +39,7 @@ public class ListaDeRacionales {
 
     // ========== COMPARA ELEMENTOS ===============
     public void comparaElementos(int A, int B){                                             //Compara si dos elementos son iguales
-        if(listaNumeros.get(A).equals(listaNumeros.get(B))){                                //Usa equals
+        if(listaNumeros[A].equals(listaNumeros[B])){                                //Usa equals
             System.out.println("Son iguales");                                              //Si son diferentes
         }
         else{System.out.println("Son diferentes");}                                         //Si son diferentes dilo
@@ -48,44 +48,44 @@ public class ListaDeRacionales {
     // ========== MUESTRA ANTERIOR ===============
     public void muestraMenor(){                                                             //Muestra el elemento Menor
         int menorID = 0;                                                                    //Aqui guardamos su ID
-        for (int i = 0; i < listaNumeros.size(); i++){                                      //Buscamos en todos lados
-            if (listaNumeros.get(menorID).compara(listaNumeros.get(i)) == 1){               //Si lo encuentras
-                menorID = listaNumeros.get(i).getID();                                      //Cambia si encontraste aun mas pequeño
+        for (int i = 0; i < listaNumeros.length ; i++){                                      //Buscamos en todos lados
+            if (listaNumeros[menorID].compara(listaNumeros[i]) == 1){               //Si lo encuentras
+                menorID = listaNumeros[i].getID();                                      //Cambia si encontraste aun mas pequeño
             }
         }
-        System.out.println("El menor es: "+listaNumeros.get(menorID));                      //Mostramos por pantalla
+        System.out.println("El menor es: "+listaNumeros[menorID]);                      //Mostramos por pantalla
     }
 
     // ========== MUESTRA MAYOR ===============
     public void muestraMayor(){                                                             //Muestra el mayor
         int mayorID = 0;                                                                    //Aqui guardamos su ID
-        for (int i = 0; i < listaNumeros.size(); i++){                                      //Buscamos en todos lados
-            if (listaNumeros.get(mayorID).compara(listaNumeros.get(i)) == -1){              //Si lo encuentras
-                mayorID = listaNumeros.get(i).getID();                                      //Cambia si encontraste aun mas grande
+        for (int i = 0; i < listaNumeros.length ; i++){                                      //Buscamos en todos lados
+            if (listaNumeros[mayorID].compara(listaNumeros[i]) == -1){              //Si lo encuentras
+                mayorID = listaNumeros[i].getID();                                      //Cambia si encontraste aun mas grande
             }
         }
-        System.out.println("El mayor es: "+listaNumeros.get(mayorID));                      //Mostramos por pantalla
+        System.out.println("El mayor es: "+listaNumeros[mayorID]);                      //Mostramos por pantalla
     }
 
 
     // ========== ORDENA ELEMENTOS ===============
     public void ordenaElementos(){
-        int mcmComun = Racional.MCM(1,listaNumeros.get(0).getDenominador());
+        int mcmComun = Racional.MCM(1,listaNumeros[0].getDenominador());
 
-        for (int i = 1; i < listaNumeros.size(); i++){
-            int a = listaNumeros.get(i).getDenominador();
+        for (int i = 1; i < listaNumeros.length ; i++){
+            int a = listaNumeros[i].getDenominador();
             mcmComun = Racional.MCM(a,mcmComun);
         }
 
-        for (int i = 0; i < listaNumeros.size(); i++){
-            int num = listaNumeros.get(i).getNumerador();
-            int den = listaNumeros.get(i).getDenominador();
+        for (int i = 0; i < listaNumeros.length; i++){
+            int num = listaNumeros[i].getNumerador();
+            int den = listaNumeros[i].getDenominador();
 
-            listaNumeros.get(i).setNumerador((num*mcmComun)/den);
-            listaNumeros.get(i).setDenominador(mcmComun);
+            listaNumeros[i].setNumerador((num*mcmComun)/den);
+            listaNumeros[i].setDenominador(mcmComun);
         }
         Collections.sort(listaNumeros);
-        for (int i = 0; i < listaNumeros.size(); i++){listaNumeros.get(i).Reducir();listaNumeros.get(i).setID(i);}
+        for (int i = 0; i < listaNumeros.length; i++){listaNumeros[i].Reducir();listaNumeros[i].setID(i);}
         muestraElementos();
     }
 
@@ -95,9 +95,9 @@ public class ListaDeRacionales {
     public void eliminar(){
         muestraElementos();
         int ID = PideDato();
-        listaNumeros.get(ID).finalize();
+        listaNumeros[ID].finalize();
         listaNumeros.remove(ID);
-        for (int i = 0; i < listaNumeros.size(); i++){listaNumeros.get(i).setID(i);}
+        for (int i = 0; i < listaNumeros.length; i++){listaNumeros[i].setID(i);}
         muestraElementos();
     }
 
@@ -113,11 +113,11 @@ public class ListaDeRacionales {
         return resultado;
     }
 
-    public boolean equals(ListaDeRacionales A){
-        if(listaNumeros.size() != A.listaNumeros.size()){return false;}
+    public boolean equals(ArraydeRacionales A){
+        if(listaNumeros.length != A.listaNumeros.length){return false;}
 
-        for (int i = 0; i < listaNumeros.size(); i++){
-            if(A.listaNumeros.get(i).equals(listaNumeros.get(i)) == false){return false;}
+        for (int i = 0; i < listaNumeros.length; i++){
+            if(A.listaNumeros[i].equals(listaNumeros[i]) == false){return false;}
         }
         return true;
     }
