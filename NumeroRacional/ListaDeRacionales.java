@@ -85,7 +85,7 @@ public class ListaDeRacionales {
             listaNumeros.get(i).setDenominador(mcmComun);
         }
         Collections.sort(listaNumeros);
-        for (int i = 0; i < listaNumeros.size(); i++){listaNumeros.get(i).Reducir();}
+        for (int i = 0; i < listaNumeros.size(); i++){listaNumeros.get(i).Reducir();listaNumeros.get(i).setID(i);}
         muestraElementos();
     }
 

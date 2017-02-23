@@ -15,6 +15,7 @@ public class Racional implements Comparable<Racional> {                         
     public void setNumerador(int num){numerador = num;}                                 //Setter and Getter
     public void setDenominador(int num){denominador = num;}                             //Setter and Getter
     public int getID(){return ID;}                                                      //Setter and Getter
+    public void setID(int ID){this.ID = ID;}                                            //Setter and Getter
     
     // ======= METODOS DE CLASE  ===================
     static int MCD(int m, int n){                                          				//=== Crea un MCD Auxiliar ========
