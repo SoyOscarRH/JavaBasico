@@ -175,4 +175,9 @@ public class Racional implements Comparable<Racional> {                         
             Reducir(); 
             return this;
         }
+
+    //Finalize
+    public void finalize(){
+        denominador = numerador = ID = 0;
+    }
 }

@@ -1,7 +1,7 @@
 import java.util.*;                                                                 		//Añade API en general
 
 public class ListaDeRacionales {
-	private ArrayList<Racional> listaNumeros = new ArrayList<Racional>();  			//Crea una lista de Numeros Racionales
+    private Racional[] listaNumeros;
 	Scanner escanerDelTeclado = new Scanner(System.in);                     				//Aqui esta el scanner para la entrada
 
     // ========== INSERTAR EN ARRAY =============
