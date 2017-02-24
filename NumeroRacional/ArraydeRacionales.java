@@ -1,40 +1,40 @@
-import java.util.*;                                                                 		//Añade API en general
+import java.util.*;                                                                         //Añade API en general
 
 public class ArraydeRacionales {
     private Racional[] listaNumeros = new Racional[0];
-	Scanner escanerDelTeclado = new Scanner(System.in);                     				//Aqui esta el scanner para la entrada
+    Scanner escanerDelTeclado = new Scanner(System.in);                                     //Aqui esta el scanner para la entrada
 
     // ========== INSERTAR EN ARRAY =============
-	public void inserta(Racional nuevoRacional){listaNumeros = add(listaNumeros, nuevoRacional);}
+    public void inserta(Racional nuevoRacional){listaNumeros = add(listaNumeros, nuevoRacional);}
 
     // ========== MUESTRA LOS ELEMENTOS  =============
-	public void muestraElementos(){
-		System.out.println("\n=========================");                     				//Muestro el menu
-        for (int i = 0; i < listaNumeros.length; i++)                      					//Recorre nuestro list
+    public void muestraElementos(){
+        System.out.println("\n=========================");                                  //Muestro el menu
+        for (int i = 0; i < listaNumeros.length; i++)                                       //Recorre nuestro list
             System.out.println(listaNumeros[i]);
-        System.out.println("=========================");                            		//Salida de todo
-	}
+        System.out.println("=========================");                                    //Salida de todo
+    }
 
     // ========== GENERA UNA OPERACION ===============
-	public void generaOperacion(){                                        					//Genera String tipo C=A*B ==
-        System.out.println("\nDame tu Operacion en el estilo C=A+B");               		//Pide tu operacion
-        String tempString = escanerDelTeclado.nextLine();                                  	//Y da un scanner
-        tempString = tempString.replaceAll("\\s","");                               		//Quitemos espacios por si los puso
+    public void generaOperacion(){                                                          //Genera String tipo C=A*B ==
+        System.out.println("\nDame tu Operacion en el estilo C=A+B");                       //Pide tu operacion
+        String tempString = escanerDelTeclado.nextLine();                                   //Y da un scanner
+        tempString = tempString.replaceAll("\\s","");                                       //Quitemos espacios por si los puso
 
-        if(tempString.length() !=5 && tempString.charAt(1)!='='){generaOperacion();}		//Si algo salio mal, repite
+        if(tempString.length() !=5 && tempString.charAt(1)!='='){generaOperacion();}        //Si algo salio mal, repite
 
-        try {																				//Intenta pasarlo a numeros
-        	System.out.println("Entre");
-        	Racional A = listaNumeros[Character.getNumericValue(tempString.charAt(2))];	   //Ponemos operadores 
-        	Racional B = listaNumeros[Character.getNumericValue(tempString.charAt(4))];	   //Ponemos operadores 
-        	Racional C = listaNumeros[Character.getNumericValue(tempString.charAt(0))];	   //Ponemos operadores
+        try {                                                                               //Intenta pasarlo a numeros
+            System.out.println("Entre");
+            Racional A = listaNumeros[Character.getNumericValue(tempString.charAt(2))];    //Ponemos operadores 
+            Racional B = listaNumeros[Character.getNumericValue(tempString.charAt(4))];    //Ponemos operadores 
+            Racional C = listaNumeros[Character.getNumericValue(tempString.charAt(0))];    //Ponemos operadores
 
-        	if(tempString.charAt(3) == '+'){C.Suma(A,B); C.toString();}
-        	if(tempString.charAt(3) == '-'){C.Resta(A,B); C.toString();}
-        	if(tempString.charAt(3) == '*'){C.Multiplicacion(A,B); C.toString();}
-        	if(tempString.charAt(3) == '/'){C.Division(A,B); C.toString();}
-        }						
-        catch (NumberFormatException e) {generaOperacion();}								//Sino, repite
+            if(tempString.charAt(3) == '+'){C.Suma(A,B); C.toString();}
+            if(tempString.charAt(3) == '-'){C.Resta(A,B); C.toString();}
+            if(tempString.charAt(3) == '*'){C.Multiplicacion(A,B); C.toString();}
+            if(tempString.charAt(3) == '/'){C.Division(A,B); C.toString();}
+        }                       
+        catch (NumberFormatException e) {generaOperacion();}                                //Sino, repite
     }
 
     // ========== COMPARA ELEMENTOS ===============
@@ -154,6 +154,3 @@ public class ArraydeRacionales {
         return a;
     }
 }
-
-
-

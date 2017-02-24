@@ -1,13 +1,13 @@
-import java.util.*;                                                                 		//Añade API en general
+import java.util.*;                                                                         //Añade API en general
 
 public class UsuarioArray {
-	public static void main(String[] args){
+    public static void main(String[] args){
         int menu = 20;
         String temporalString;
         ArraydeRacionales listaX = new ArraydeRacionales();                                 //Ve que llamamos al array
 
-        Scanner escanerDelTeclado = new Scanner(System.in);                             	//Aqui esta el scanner para la entrada
-        System.out.println("\n\n===== PROGRAMA: CONTROL DE RACIONALES ========");      		//Mostramos Mensaje por Consola
+        Scanner escanerDelTeclado = new Scanner(System.in);                                 //Aqui esta el scanner para la entrada
+        System.out.println("\n\n===== PROGRAMA: CONTROL DE RACIONALES ========");           //Mostramos Mensaje por Consola
         
         String mensaje = "\n\n\n\n\n================ MENU DE OPCIONES ==============\n";
         mensaje += "1)Crear Racional\n2)Muestra Numeros\n3)Operacion entre Racionales";
@@ -15,16 +15,16 @@ public class UsuarioArray {
         mensaje += "\n7)Ordena el Conjunto de Numerosn\n8)Eliminar\n0)Salir\n\nDame tu accion: ";
 
         do {                               
-            System.out.print(mensaje);														//==== MENU EN SI DEL USUARIO
-            temporalString = escanerDelTeclado.nextLine();									//Generamos un String pequeño
-            if (Racional.EsUnNumero(temporalString)) {                      				//Si lo que tenemos solo son enteros
-                menu = Integer.parseInt(temporalString);            						//Vamos a guardarlo como entero
+            System.out.print(mensaje);                                                      //==== MENU EN SI DEL USUARIO
+            temporalString = escanerDelTeclado.nextLine();                                  //Generamos un String pequeño
+            if (Racional.EsUnNumero(temporalString)) {                                      //Si lo que tenemos solo son enteros
+                menu = Integer.parseInt(temporalString);                                    //Vamos a guardarlo como entero
             }
-            else{menu=10;}                                                    				//Sino mandemos un 1
+            else{menu=10;}                                                                  //Sino mandemos un 1
 
             if (menu == 1) {
-            	Racional temporal = new Racional();                     					//Crea una nueva referencia
-            	listaX.inserta(temporal);
+                Racional temporal = new Racional();                                         //Crea una nueva referencia
+                listaX.inserta(temporal);
             }
             if (menu == 2) {listaX.muestraElementos();}
             if (menu == 3) {listaX.generaOperacion();}
