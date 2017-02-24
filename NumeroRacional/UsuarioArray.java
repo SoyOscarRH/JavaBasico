@@ -1,10 +1,10 @@
 import java.util.*;                                                                 		//Añade API en general
 
-public class Usuario {
+public class UsuarioArray {
 	public static void main(String[] args){
         int menu = 20;
         String temporalString;
-        ArraydeRacionales listaX = new ArraydeRacionales();
+        ArraydeRacionales listaX = new ArraydeRacionales();                                 //Ve que llamamos al array
 
         Scanner escanerDelTeclado = new Scanner(System.in);                             	//Aqui esta el scanner para la entrada
         System.out.println("\n\n===== PROGRAMA: CONTROL DE RACIONALES ========");      		//Mostramos Mensaje por Consola

@@ -66,9 +66,11 @@ public class Racional implements Comparable<Racional> {                         
     }
 
     public int compareTo(Racional A) {                                                  //=== Compara para Ordenar =========
-        int comparacion = (A.numerador);                    
-        return this.numerador-comparacion;
+        int comparacion = (A.numerador);                                                //Nos dice que vamos a comparar los numeradores 
+        return this.numerador-comparacion;                                              //y es lo que regresa para comparar
     }
+    
+    public void finalize(){denominador = numerador = ID = 0;}                           //=== Prepara para Eliminar Racional ==
 
 
     // ======= CONSTRUCTORES AUXILIARES  ===========
@@ -175,9 +177,4 @@ public class Racional implements Comparable<Racional> {                         
             Reducir(); 
             return this;
         }
-
-    //Finalize
-    public void finalize(){
-        denominador = numerador = ID = 0;
-    }
 }

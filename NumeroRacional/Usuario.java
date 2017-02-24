@@ -24,7 +24,7 @@ public class Usuario {
 
             if (menu == 1) {
             	Racional temporal = new Racional();                     					//Crea una nueva referencia
-            	listaX.inserta(temporal);
+            	listaX.inserta(temporal);                                                   
             }
             if (menu == 2) {listaX.muestraElementos();}
             if (menu == 3) {listaX.generaOperacion();}
