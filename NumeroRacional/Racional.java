@@ -38,7 +38,7 @@ public class Racional implements Comparable<Racional> {                         
     public String toString() {return "Numero #"+ID+" :"+numerador+"/"+denominador;}     //=== Sobre escribir toString ======
 
     public boolean equals(Racional A){                                                  //=== Sobreescribe el Metodo de Equals
-        if(A.numerador == numerador && A.numerador == numerador){return true;}
+        if(A.numerador == numerador && A.denominador == denominador){return true;}
         return false;
     }
 

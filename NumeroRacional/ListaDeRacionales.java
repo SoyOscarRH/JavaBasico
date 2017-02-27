@@ -24,7 +24,6 @@ public class ListaDeRacionales {                                                
         if(tempString.length()!=5 && tempString.charAt(1)!='='){generaOperacion();}         //Si algo salio mal, repite
 
         try {                                                                               //Intenta pasarlo a numeros
-            System.out.println("Entre");
             Racional A = listaNumeros.get(Character.getNumericValue(tempString.charAt(2))); //Ponemos operadores 
             Racional B = listaNumeros.get(Character.getNumericValue(tempString.charAt(4))); //Ponemos operadores 
             Racional C = listaNumeros.get(Character.getNumericValue(tempString.charAt(0))); //Ponemos operadores
