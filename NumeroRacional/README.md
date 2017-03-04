@@ -5,12 +5,12 @@
 
 Genera una clase racional diseñada para usarse como parte de un arreglo de racionales
     **Constructores:**
-        * Uno vacio que obliga al usuario a ingresar datos
-        * Uno que recibe un string que dedice si lo escribiste como "1/3" o "0.23"
-        * Uno que recibe dos enteros para guardarlos
-        * Un constructor de copia
+        - Uno vacio que obliga al usuario a ingresar datos
+        - Uno que recibe un string que dedice si lo escribiste como "1/3" o "0.23"
+        - Uno que recibe dos enteros para guardarlos
+        - Un constructor de copia
 
-        * Interprete: La clase se crea con un string que puede ser desde: "-1/ 3" "-1/-6" "-0.23" 
+        - Interprete: La clase se crea con un string que puede ser desde: "-1/ 3" "-1/-6" "-0.23" 
 
     
     **Reducir:**
