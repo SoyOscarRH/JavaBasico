@@ -38,7 +38,14 @@ public class NumComplejo {                                                      
         return this;
     }
 
-    public void Polar(){
-        System.out.print(Math.sqrt((double)((a*a)+(b*b)))+" <"+Math.atan(b/a));
+    public String Polar(){
+
+        double angulo = Math.atan(b/a);
+        angulo = Math.round(angulo*100)/100.0d;
+
+        double magnitud = Math.sqrt((double)((a*a)+(b*b)));
+        magnitud = Math.round(magnitud*100)/100.0d;
+
+        return (magnitud+" <"+angulo);
     }
 }
