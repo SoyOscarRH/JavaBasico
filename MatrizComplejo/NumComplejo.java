@@ -21,20 +21,22 @@ public class NumComplejo {                                                      
     //======== OPERACIONES ===============
     public NumComplejo Suma(NumComplejo A){return Suma(A,this);}
     public NumComplejo Suma(NumComplejo A, NumComplejo B){
-        A.a += B.a;
-        A.b += B.b;
+        a = (A.a + B.a);
+        b = (A.b + B.b);
         return this;
     }
     public NumComplejo Resta(NumComplejo A){return Resta(A,this);}
     public NumComplejo Resta(NumComplejo A, NumComplejo B){
-        A.a -= B.a;
-        A.b -= B.b;
+        a = (A.a - B.a);
+        b = (A.b - B.b);
         return this;
     }
     public NumComplejo Multiplicacion(NumComplejo A){return Multiplicacion(A,this);}
     public NumComplejo Multiplicacion(NumComplejo A, NumComplejo B){
         int temporalA = ((A.a * B.a) - (A.b * B.b));
         int temporalB = ((A.a * B.b) + (A.b * B.a));
+        a = temporalA;
+        b = temporalB;
         return this;
     }
 
@@ -47,5 +49,11 @@ public class NumComplejo {                                                      
         magnitud = Math.round(magnitud*100)/100.0d;
 
         return (magnitud+" <"+angulo);
+    }
+
+    public double magnitud(){
+        double magnitud = Math.sqrt((double)((a*a)+(b*b)));
+        magnitud = Math.round(magnitud*100)/100.0d;
+        return magnitud;
     }
 }

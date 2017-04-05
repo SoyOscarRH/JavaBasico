@@ -51,6 +51,98 @@ public class main {
 		M5.imprimir("binomio");
 		M5.imprimir("polar"); 
 
+		// Suma las matrices M3 y M4 ((siempre y cuando el orden de ambas matrices sea válido, de 
+		// otra forma la operación no es realizada), el resultado queda en M3.
+		// La operación matemática es: M3= M3 + M4
+		System.out.println(M3);
+		System.out.println(M4);
+		M3.sumar(M3,M4);
+		System.out.println(M3);
 
-	}
+		/*
+		Suma las matrices M1 y M2, y el resultado queda en M2 (siempre y cuando el orden de 
+		ambas matrices sea válido, de otra forma la operación no es realizada).
+		La operación matemática es: M1= M1 + M2
+		*/
+
+		System.out.println(M1);
+		System.out.println(M2);
+		M1.sumar(M2);
+		System.out.println(M1);
+
+		/*
+		Suma la matriz M3 con M4, el resultado se suma con el contenido de M2. El resultado queda
+		en M2.
+		Equivalente a M2 = M2 + M3 + M4
+		*/
+
+		System.out.println("Vamos a operacion");
+		System.out.println(M4);
+		System.out.println(M3);
+		System.out.println(M2);
+		M2.sumar(M3.sumar(M4));					//Podria hacer esto, pero M2 no tiene tamano
+		//System.out.println(M3.sumar(M4));		//Pero M3 y M4 si que puede
+
+		/* 
+		Hace la resta de M2 menos M1, dejando el resultado en M2 (siempre y cuando el orden de ambas 
+		matrices sea válido, de otra forma la operación no es realizada).
+		M2 = M2 - M1;
+		*/
+		System.out.println(M2);
+		M2.restar(M2); 
+		System.out.println(M2);
+
+		/*
+		Realiza la multiplicación de M5 por M6; el resultado es asignado a la matriz MM 
+		Esta operación debe revisar que el producto sea válido, es decir, el número de 
+		de columnas de la primera matriz (M5) debe coincidir con el número de renglones de la
+		segunda matriz (M6). 
+		La matriz resultante MM tiene el orden de los renglones de M5 por las columnas de M6, esto es 
+		4X4
+		*/
+
+		/*
+		Se crea la matriz M6 de 3 renglones por 4 columnas, e inicializa los valores
+		para los números complejos, tanto parte real como la imaginaria, con enteros
+		positivos de forma aleatoria (Random) en el 1 y 100
+		*/
+		MatrizComplejos M6 = new MatrizComplejos("M6", 3,4,"R+100");
+		System.out.println(M6);
+
+		MatrizComplejos MM = new MatrizComplejos("MM", 2,2,"R+2");
+		System.out.println(MM);
+
+		MatrizComplejos MM2 = new MatrizComplejos("MM2", 2,2,"R+2");
+		System.out.println(MM2);
+
+		MatrizComplejos MM3 = MM2.multiplicar(MM);
+		System.out.println(MM3);
+
+
+		/* 
+		Se obtiene la matriz transpuesta de M3. Por lo tanto, la matriz M3 queda modificada, se
+		convierte en la matriz transpuesta de sí misma.
+		Nota: no es válido imprimir la matriz invirtiendo las columnas por los renglones, la
+		matriz debe quedar modificada como su transpuesta.
+		*/
+		System.out.println(M3);
+		System.out.println(M3.transpuesta());
+
+		System.out.println(M3);
+		M3.Espiral();
+
+		// Imprime cálculos: el valor máximo, el valor mínimo, el promedio, y la moda,
+		System.out.println(M4);
+		M4.calculos();
+
+		// El método equals prueba si dos matrices son iguales tanto en orden como en contenido.
+		// Devuelve el valor true si son iguales, devuelve el valor false en caso contrario.
+		boolean b = M2.equals(M2);           
+		if (b) 
+		     System.out.println("M2 es igual que M2");
+		else
+		    System.out.println("M2 no es igual a M2");
+
+}
+
 }

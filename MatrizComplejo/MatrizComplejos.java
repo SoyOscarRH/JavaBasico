@@ -111,6 +111,195 @@ public class MatrizComplejos {                                 //======== CLASE 
 
 
 
+    public MatrizComplejos sumar(MatrizComplejos A){return sumar(A,this);}
+    public MatrizComplejos sumar(MatrizComplejos A, MatrizComplejos B){
+        if(A.m == B.m && A.n == B.n){
+            m = A.m; n = A.n;
+            ArrayList <ArrayList<NumComplejo> > NuevaMatriz = new ArrayList <ArrayList<NumComplejo> >();
+
+            for (int i = 0; i < m; i++) {
+                ArrayList<NumComplejo> Temporal = new ArrayList<NumComplejo>();
+                for (int j = 0; j < n; j++){
+                    NumComplejo numTemporal1 = (A.Matriz.get(i)).get(j);
+                    NumComplejo numTemporal2 = (B.Matriz.get(i)).get(j);
+                    Temporal.add(numTemporal1.Suma(numTemporal2));
+                }
+                NuevaMatriz.add(Temporal);
+            }
+            Matriz = NuevaMatriz;
+        }
+        return this;
+    }
+    public MatrizComplejos restar(MatrizComplejos A){return restar(A,this);}
+    public MatrizComplejos restar(MatrizComplejos A, MatrizComplejos B){
+        if(A.m == B.m && A.n == B.n){
+            m = A.m; n = A.n;
+            ArrayList <ArrayList<NumComplejo> > NuevaMatriz = new ArrayList <ArrayList<NumComplejo> >();
+
+            for (int i = 0; i < m; i++) {
+                ArrayList<NumComplejo> Temporal = new ArrayList<NumComplejo>();
+                for (int j = 0; j < n; j++){
+                    NumComplejo numTemporal1 = (A.Matriz.get(i)).get(j);
+                    NumComplejo numTemporal2 = (B.Matriz.get(i)).get(j);
+                    Temporal.add(numTemporal1.Resta(numTemporal2));
+                }
+                NuevaMatriz.add(Temporal);
+            }
+            Matriz = NuevaMatriz;
+        }
+        return this;
+    }
+
+    public MatrizComplejos multiplicar(MatrizComplejos A){return multiplicar(A,this);}
+    public MatrizComplejos multiplicar(MatrizComplejos A, MatrizComplejos B){
+        if(A.n == B.m){
+            m = A.m; n = B.n;
+            ArrayList <ArrayList<NumComplejo> > NuevaMatriz = new ArrayList <ArrayList<NumComplejo> >();
+
+            NumComplejo elemento, temp1, temp2;
+            for (int i = 0; i < m; i++){                                            //Recorre todas filas
+                ArrayList<NumComplejo> Temporal = new ArrayList<NumComplejo>();
+                for(int j = 0; j < n; j++){                                         //Y para cada elemento de esta fila
+                    elemento = new NumComplejo(0,0);                                //Aqui guardamos el resultado
+                    for (int k = 0; k < A.n; k++){                                  //Recorremos toda la fila / columna
+                        temp1 = (A.Matriz.get(i)).get(k);
+                        temp2 = (A.Matriz.get(k)).get(j);
+                        temp2 = temp2.Multiplicacion(temp1);
+                        elemento.Suma(temp2);
+                    }
+                    Temporal.add(elemento);                                         //Y al guardalo
+                }
+                NuevaMatriz.add(Temporal);        
+            }
+            Matriz = NuevaMatriz;
+        }
+        return this;
+    }
+
+
+
+
+    MatrizComplejos transpuesta(){
+        MatrizComplejos Nueva = new MatrizComplejos("M1-Transpuesta", n, m);
+        ArrayList < ArrayList<NumComplejo> > NuevaMatriz = new ArrayList < ArrayList<NumComplejo> >();
+
+        for (int i = 0; i < n; i++) {
+            ArrayList<NumComplejo> Temporal = new ArrayList<NumComplejo>();
+            for (int j = 0; j < m; j++)
+                Temporal.add((Matriz.get(j)).get(i));
+            NuevaMatriz.add(Temporal);
+        }
+
+        Nueva.Matriz = NuevaMatriz;
+        return Nueva;
+    }
+
+
+
+
+    boolean MuestraContorno(int nivel){
+        int xActual = 0 + nivel;
+        int yActual = 0 + nivel;
+
+        int movimientoEnX = n - (2*nivel);
+        int movimientoEnY = ( m - (2*nivel) ) - 2;
+
+        if (movimientoEnY < 1 && movimientoEnX > 0){
+            for (int i = 0; i < movimientoEnX; i++){
+                System.out.print((Matriz.get(yActual)).get(xActual+i)+" ");
+            }
+            return false;
+        }
+
+        if (movimientoEnX < 1 && movimientoEnY > 0){
+            for (int i = 0; i < movimientoEnX; i++){
+                System.out.print((Matriz.get(yActual)).get(xActual+i)+" ");
+            }
+            return false;
+        }
+
+        if (movimientoEnX < 1 && movimientoEnY < 1){
+            return false;
+        }
+
+        for (int i = 0; i < movimientoEnX; i++){
+            System.out.print((Matriz.get(yActual)).get(xActual+i)+" ");
+        }
+
+        xActual += (movimientoEnX-1); 
+        yActual++;
+
+        System.out.print(" // ");
+
+        for (int i = 0; i < movimientoEnY; i++){
+            System.out.print((Matriz.get(yActual+i)).get(xActual)+" ");
+        }
+
+        yActual += movimientoEnY; 
+
+        System.out.print(" // ");
+
+        for (int i = 0; i < movimientoEnX; i++){
+            System.out.print((Matriz.get(yActual)).get(xActual-i)+" ");
+        }
+
+        xActual -= (movimientoEnX-1); 
+        yActual--;
+
+        System.out.print(" // ");
+        
+        for (int i = 0; i < movimientoEnY; i++){
+            System.out.print((Matriz.get(yActual-i)).get(xActual)+" ");
+        }
+
+        System.out.print(" // ");
+        return true;
+
+    } 
+
+
+    void Espiral(){
+        int num = Math.max(m,n);
+        for (int i = 0; i < num; i++){
+            if (!MuestraContorno(i)) break;
+        }
+    }
+
+    void calculos(){
+        NumComplejo menor, mayor;
+        menor = mayor = (Matriz.get(0)).get(0);
+        NumComplejo promedio = new NumComplejo(0,0);
+
+        for (int i = 0; i < m; i++) {                                      
+            for (int j = 0; j < n; j++) {                                      
+                if ( (Matriz.get(i)).get(j).magnitud() > mayor.magnitud()) mayor = (Matriz.get(i)).get(j);
+                else if ( (Matriz.get(i)).get(j).magnitud() < menor.magnitud()) menor = (Matriz.get(i)).get(j);
+                promedio.Suma((Matriz.get(i)).get(j));
+            }
+        }
+
+        int sumaDeTodo = (m+n)-1;
+
+        System.out.println("\nEl mayor elemento (en cuanto a magnitud) es el "+mayor+" y el menor es el "+menor+"\n");
+        System.out.println("Y el promedio es "+(promedio.a)+"/"+sumaDeTodo+" + "+promedio.b+"/"+sumaDeTodo+" i");
+
+    }
+
+
+
+
+    //======= F ========================
+    boolean equals(MatrizComplejos A){
+
+        if( m != A.m || n != A.n) return false;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++)
+                if ((Matriz.get(i)).get(j).equals((A.Matriz.get(i)).get(j)) == false) return false;
+        }
+
+        return true;
+    }
 
 
 
