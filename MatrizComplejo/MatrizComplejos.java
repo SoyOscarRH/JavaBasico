@@ -83,7 +83,7 @@ public class MatrizComplejos {                                 //======== CLASE 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++)
                 Resultado += ("["+(Matriz.get(i)).get(j)+"]\t");
-            Resultado += "\n\n\n\n";
+            Resultado += "\n\n";
         }
         return Resultado;
     }
@@ -163,7 +163,7 @@ public class MatrizComplejos {                                 //======== CLASE 
                     elemento = new NumComplejo(0,0);                                //Aqui guardamos el resultado
                     for (int k = 0; k < A.n; k++){                                  //Recorremos toda la fila / columna
                         temp1 = (A.Matriz.get(i)).get(k);
-                        temp2 = (A.Matriz.get(k)).get(j);
+                        temp2 = (B.Matriz.get(k)).get(j);
                         temp2 = temp2.Multiplicacion(temp1);
                         elemento.Suma(temp2);
                     }

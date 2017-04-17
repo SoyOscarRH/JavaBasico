@@ -6,6 +6,7 @@ public class Rectangulo{
 
 	Rectangulo(Punto P1, Punto P2, String nombre) {						//Constructor base
 		a = P1; b = P2; this.nombre = nombre;							//Asignar valores
+		if (a.distancia() > b.distancia()){a = P2; b = P1;} 			//Si pusiste los puntos al reves
 	}
 	Rectangulo(int x1, int x2, int y1, int y2, String nombre){			//Constructor pro
 		this(new Punto(x1, y1, '1'), new Punto(x2, y2, '2'), nombre);	//todo en una linea :v
@@ -13,7 +14,10 @@ public class Rectangulo{
 	Rectangulo(Rectangulo R, String nombre){this(R.a, R.b, nombre);}	//Constructor de copia
 
 
-	public String toString(){return (nombre+"["+this.a+","+this.b+"]");}//Mostramos la info
+	public String toString(){
+		if (this == null) return ("[ ]");								//si no eres nada
+		return (nombre+"["+this.a+","+this.b+"]");						//Mostramos la info
+	}	
 
 	public Punto getX(){return a;}										//Setters
 	public Punto getY(){return b;}										//Setters
@@ -33,6 +37,18 @@ public class Rectangulo{
 	}
 
 	Rectangulo getInteseccion(Rectangulo R){
+		boolean sePuede = false;										//Veamos si se puede
+		Punto NP1 = new Punto(R.a.getX(), R.b.getY());					//Dame el nuevo punto
+		Punto NP2 = new Punto(R.b.getX(), R.a.getY());					//Dame el nuevo punto
+
+
+		if ( sePuede || (this.estaDentro(R.a)) ) sePuede = true;		//Compara
+		if ( sePuede || (this.estaDentro(R.b)) ) sePuede = true;		//Compara
+		if ( sePuede || (this.estaDentro(NP1)) ) sePuede = true;		//Compara
+		if ( sePuede || (this.estaDentro(NP2)) ) sePuede = true;		//Compara
+
+		if (!sePuede) return null;										//Si no se puede : (
+
 		int[] arrayX = {a.getX(), b.getX(), R.a.getX(), R.b.getX()};	//Dame todas las x
 		int[] arrayY = {a.getY(), b.getY(), R.a.getY(), R.b.getY()};	//Dame todas las y
 
@@ -53,23 +69,33 @@ public class Rectangulo{
 		Arrays.sort(arrayX);											//Ordename esta (de la manera mas respetable posible)
 		Arrays.sort(arrayY);											//Ordename esta (de la manera mas respetable posible)
 
-		if (P.getX() == arrayX[1] && P.getY() == arrayY[1])
-			return true;
-		return false;
+		if (P.getX() == arrayX[0] && P.getX() == arrayY[1])				//si eres el mismo
+			return false;												//wi!
+
+		if (P.getX() == arrayX[0] && P.getX() == arrayY[1])				//si eres el mismo
+			return false;												//wi!
+
+		if (P.getX() == arrayX[1] && P.getY() == arrayY[1])				//si eres el de enmedio
+			return true;												//wi!
+		return false;													//sino : (
 	}
 
 	double getArea(){
-		double area = ((a.getX()-b.getX())*(a.getY()-b.getY()));
-		if (area < 0) return (area * -1);
-		return area;
+		double area = ((a.getX()-b.getX())*(a.getY()-b.getY()));		//Dame el ares
+		if (area < 0) return (area * -1);								//Si fue negativa
+		return area;													//Sino todo bien
 	}
 
-	boolean compara(Rectangulo R){
-		if (R.getArea() == this.getArea()) return true;
-		return false;
+	int compara(Rectangulo R){
+		if (R.getArea() > this.getArea()) return -1;					//Si tu area es diferente
+		if (R.getArea() < this.getArea()) return 1;						//Si tu area es diferente
+		return 0;														//sino
 	}
 
-	void moverRectangulo(Punto P1, Punto P2){a = P1; b = P2;}
+	void moverRectangulo(Punto P1, Punto P2){
+		a = P1; b = P2;													//Asignar valores
+		if (a.distancia() > b.distancia()){a = P2; b = P2;} 			//Si pusiste los puntos al reves
+	}
 
 	int cuadrante(){return a.cuadrante();}
 }

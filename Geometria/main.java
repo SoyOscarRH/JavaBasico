@@ -18,8 +18,8 @@ public class main{
 		
 
 		System.out.println("== 	RECTANGULO ==");
-		Rectangulo N1 = new Rectangulo(new Punto(3, 2), new Punto(7, 4), "N1");
-		Rectangulo N2 = new Rectangulo(new Punto(5, 3), new Punto(10, 7), "N2");
+		Rectangulo N1 = new Rectangulo(new Punto(3, 3), new Punto(5, 5), "N1");
+		Rectangulo N2 = new Rectangulo(new Punto(0, 0), new Punto(3, 3), "N2");
 		System.out.println(N1.getUnion(N2));
 		System.out.println(N1.getInteseccion(N2));
 
@@ -32,8 +32,11 @@ public class main{
 
  		Rectangulo R2 = new Rectangulo(new Punto(0, 0), new Punto(2, 9), "N4");
 		System.out.println("El area de R2 es "+ R2.getArea());
-     	if(R1.compara(R2))
+     	if(R1.compara(R2) == 0)
  			System.out.println("Tienen la misma area");
+
+
+ 		// PARTE DEL RECTANGULO HECHO, FALTA TRIANGULO
 	}
 }
 

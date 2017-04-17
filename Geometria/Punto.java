@@ -22,10 +22,10 @@ public class Punto{
 	}
 		
 	public int cuadrante() {												//Nos dice en que cuadrante estoy
-		if(x>0 && y>0) return 1;	
-		if(x<0 && y>0) return 2;									
-		if(x<0 && y<0) return 3;
-		return 4;
+		if(x>0 && y>0) return 1;											//Nos dice en que cuadrante estoy
+		if(x<0 && y>0) return 2;											//Nos dice en que cuadrante estoy
+		if(x<0 && y<0) return 3;											//Nos dice en que cuadrante estoy
+		return 4;															//Nos dice en que cuadrante estoy
 	}
 
 }
