@@ -1,4 +1,10 @@
 import java.util.*;
+import javafx.application.Application;                                  //Library to import
+import javafx.scene.Group;                                              //Library to import
+import javafx.scene.Scene;                                              //Library to import
+import javafx.stage.Stage;                                              //Library to import
+import javafx.scene.shape.Rectangle;                                    //Library to import
+
 
 public class Rectangulo{
 	private Punto a, b;													//Atributos
@@ -98,6 +104,31 @@ public class Rectangulo{
 	}
 
 	int cuadrante(){return a.cuadrante();}
+
+
+	Rectangle getDraw(){
+
+		double x = 0, y = 0, h = 0, w = 0;
+		double p1 = (a.getX() * 10) + 600;
+		double p2 = (a.getY() * 10) + 360;
+		double p3 = (b.getX() * 10) + 600;
+		double p4 = (b.getY() * 10) + 360;
+		
+		if (p1 < p3) x = p1;
+		else x = p3;
+
+		if (p2 < p4) y = p4;
+		else y = p2;
+
+		h = Math.abs(p2 - p4);
+		w = Math.abs(p1 - p3);
+
+
+		System.out.println(x + " * " + y + " * " + w + " * " + h);
+		return new Rectangle(x,y, w, h); 							//Create a Rectangle   
+	}
+
+	
 }
 
 
