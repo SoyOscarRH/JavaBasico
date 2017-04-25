@@ -42,4 +42,7 @@ public class Punto{
 		return new Circle(screenX, screenY, 5);
 	}
 
+	double getScreenX(){return ((20*x) + (1200 / 2));}
+	double getScreenY(){return (-(20*y) + (720 / 2));}
+
 }
