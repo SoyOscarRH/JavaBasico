@@ -1,4 +1,10 @@
 import java.util.*;															//Librerias
+import javafx.application.Application;                                 		//Library to import
+import javafx.scene.Group;                                                  //Library to import
+import javafx.scene.Scene;                                                  //Library to import
+import javafx.stage.Stage;                                                  //Library to import
+import javafx.scene.shape.*;                                                //Library to import
+
 
 public class Punto{
 	private int x, y;														//Atributos
@@ -26,6 +32,14 @@ public class Punto{
 		if(x<0 && y>0) return 2;											//Nos dice en que cuadrante estoy
 		if(x<0 && y<0) return 3;											//Nos dice en que cuadrante estoy
 		return 4;															//Nos dice en que cuadrante estoy
+	}
+
+
+	public Circle getDrawCircle(){
+		double screenX =  (20*x) + (1200 / 2);								//Screeen Coordenates
+		double screenY = -(20*y) + (720 / 2);								//Screeen Coordenates
+
+		return new Circle(screenX, screenY, 5);
 	}
 
 }

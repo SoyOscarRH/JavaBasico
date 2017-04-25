@@ -103,29 +103,26 @@ public class Rectangulo{
 		if (a.distancia() > b.distancia()){a = P2; b = P2;} 			//Si pusiste los puntos al reves
 	}
 
-	int cuadrante(){return a.cuadrante();}
+	int cuadrante(){return a.cuadrante();}								//get me the String
 
 
-	Rectangle getDraw(){
+	Rectangle getDraw(){												//Draw the Rectangle
+		double cartX, cartY, h, w;										//Variables
 
-		double x = 0, y = 0, h = 0, w = 0;
-		double p1 = (a.getX() * 10) + 600;
-		double p2 = (a.getY() * 10) + 360;
-		double p3 = (b.getX() * 10) + 600;
-		double p4 = (b.getY() * 10) + 360;
-		
-		if (p1 < p3) x = p1;
-		else x = p3;
+		if (a.getX() < b.getX()) cartX = a.getX();						//Select bigger
+		else cartX = b.getX();											//Select bigger
 
-		if (p2 < p4) y = p4;
-		else y = p2;
-
-		h = Math.abs(p2 - p4);
-		w = Math.abs(p1 - p3);
+		if (a.getY() > b.getY()) cartY = a.getY();						//Select smaller
+		else cartY = b.getY();											//Select smaller
 
 
-		System.out.println(x + " * " + y + " * " + w + " * " + h);
-		return new Rectangle(x,y, w, h); 							//Create a Rectangle   
+		double screenX =  (20*cartX) + (1200 / 2);						//Screeen Coordenates
+		double screenY = -(20*cartY) + (720 / 2);						//Screeen Coordenates
+
+		w = Math.abs(a.getX() - b.getX()) * 20;							//Get the with
+		h = Math.abs(a.getY() - b.getY()) * 20;							//Get the height
+
+		return new Rectangle(screenX, screenY, w, h); 					//Create a Rectangle   
 	}
 
 	
