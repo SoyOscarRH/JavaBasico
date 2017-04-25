@@ -12,83 +12,107 @@ public class GUI extends Application {                                        //
    
    public void start(Stage Window) {                                          //@Override To Start GUI  
       
-      // =========== MAIN ==========================
-      System.out.println("===  PUNTOS  ===");
-      Punto q = new Punto(1, 1, 'q');
-      Punto r = new Punto(3, -1, 'r');
+      // =========== PUNTOS ========================
+      System.out.println("\n\n\n===  PUNTOS  ===");
 
-      System.out.println(q+" cuadrante: "+q.cuadrante());
+      Punto a = new Punto(2, 2, 'q');
+      Punto b = new Punto(6, -2, 'r');
+      Punto c = new Punto(14,-2, 'm');
       
-      System.out.println(r+" cuadrante: "+r.cuadrante());
+      System.out.println(a + " cuadrante: " + a.cuadrante());
+      System.out.println(b + " cuadrante: " + b.cuadrante());
 
-      Punto m = new Punto(7,-1, 'm');
-      System.out.println(m+" distancia (origen): "+m.distancia());
-      System.out.println(m+" distancia (a r): "+m.distancia(r));
+      System.out.println(c + " distancia (origen): " + c.distancia());
+      System.out.println(a + " distancia (hasta a): " + c.distancia(a));
       
 
       // ======= RECTANGULO ========================
+      System.out.println("\n\n\n==  RECTANGULO ==");
 
-      System.out.println("==  RECTANGULO ==");
-      Rectangulo N1 = new Rectangulo(new Punto(3, 3), new Punto(5, 5), "N1");
-      Rectangulo N2 = new Rectangulo(new Punto(0, 0), new Punto(3, 3), "N2");
+      Rectangulo N1 = new Rectangulo(new Punto(8, 8), new Punto(9, 10), "N1");
+      Rectangulo N2 = new Rectangulo(new Punto(0, 0), new Punto(6, 6), "N2");
+      Rectangulo N3 = new Rectangulo(new Punto(-4, 6), new Punto(-16, 12), "N3");
+      Rectangulo N4 = new Rectangulo(new Punto(-10, -10), new Punto(-12, -12), "N4");
+      Rectangulo N5 = new Rectangulo(new Punto(4, -12), new Punto(14, -10), "N3");
+      Rectangulo N6 = new Rectangulo(new Punto(6, -10), new Punto(10, -14), "N4");
+
       System.out.println(N1.getUnion(N2));
       System.out.println(N1.getInteseccion(N2));
 
+      System.out.println("El area de N1 es "+ N1.getArea());
+      System.out.println("El area de N2 es "+ N2.getArea());
 
-      Rectangulo R1 = new Rectangulo(new Punto(2, 3), new Punto(8, 6), "N3");
-      System.out.println("El area de R1 es "+ R1.getArea());
-      Punto x = new Punto(3,3);
-      if(R1.estaDentro(x))
-         System.out.println("El punto" + x + " está adentro de " + R1);
+      if(N2.estaDentro(a))
+         System.out.println("El punto" + a + " está adentro de " + N2);
 
-      Rectangulo R2 = new Rectangulo(new Punto(0, 0), new Punto(2, 9), "N4");
-      System.out.println("El area de R2 es "+ R2.getArea());
-      if(R1.compara(R2) == 0)
-         System.out.println("Tienen la misma area");
-
-
+      if(N1.compara(N2) == 0)
+         System.out.println("R1 Y R2 Tienen la misma area");
 
 
       // ===== TRIANGULO ===========================
-      Triangulo T1 = new Triangulo(new Punto(-1,-1), new Punto(-5,-5), new Punto(-2,-5), "T1");
-
+      System.out.println("\n\n\n==  TRIANGULO ==");
+      Triangulo T1 = new Triangulo(new Punto(-12,-3), new Punto(-9,-9), new Punto(-8,-5), "T1");
+      Triangulo T2 = new Triangulo(new Punto(-8,-3), new Punto(-12,-9), new Punto(-6,-5), "T2");
+      System.out.println(T1);
 
       // =================================================
       // ================ DRAW ALL =======================
       // =================================================
       Rectangle N1D = N1.getDraw();                                           //Get an Object                
       Rectangle N2D = N2.getDraw();                                           //Get an Object
+      Rectangle N3D = N3.getDraw();                                           //Get an Object
+      Rectangle N4D = N4.getDraw();                                           //Get an Object
       Rectangle N1U2D = N1.getUnion(N2).getDraw();                            //Get an Object
-      Rectangle R1D = R2.getDraw();                                           //Get an Object
-      Rectangle R2D = R1.getUnion(N2).getDraw();                              //Get an Object
-      Circle rD = r.getDrawCircle();
-      Circle qD = q.getDrawCircle();
-      Circle mD = x.getDrawCircle();
-      Circle xD = x.getDrawCircle();
-      Polygon T1D = T1.getDraw();                                              //Get an Object                
+      Rectangle N5D = N5.getDraw();                                           //Get an Object
+      Rectangle N6D = N6.getDraw();                                           //Get an Object
+      Rectangle N5I6D = N5.getInteseccion(N6).getDraw();                      //Get an Object
 
+      Circle aD = a.getDrawCircle();
+      Circle bD = b.getDrawCircle();
+      Circle cD = c.getDrawCircle();
+      
+      Polygon T1D = T1.getDraw();                                              //Get an Object
+      Polygon T2D = T2.getDraw();                                              //Get an Object 
 
-      R1D.setOpacity(0.5);                                                    //Gives Opacity
-      R2D.setOpacity(0.5);                                                    //Gives Opacity
       N1D.setOpacity(0.5);                                                    //Gives Opacity
       N2D.setOpacity(0.5);                                                    //Gives Opacity
+      N3D.setOpacity(0.5);                                                    //Gives Opacity
+      N4D.setOpacity(0.5);                                                    //Gives Opacity
       N1U2D.setOpacity(0.2);                                                  //Gives Opacity
-      xD.setOpacity(0.8);                                                     //Gives Opacity
-      rD.setOpacity(0.8);                                                     //Gives Opacity
-      qD.setOpacity(0.8);                                                     //Gives Opacity
-      T1D.setOpacity(0.8);                                                    //Gives Opacity
+      N5D.setOpacity(0.3);                                                    //Gives Opacity
+      N6D.setOpacity(0.3);                                                    //Gives Opacity
+      N5I6D.setOpacity(0.8);                                                  //Gives Opacity
       
-      xD.setFill(Color.RED);                                                  //Color
-      rD.setFill(Color.RED);                                                  //Color
-      qD.setFill(Color.RED);                                                  //Color
+      aD.setOpacity(0.8);                                                     //Gives Opacity
+      bD.setOpacity(0.8);                                                     //Gives Opacity
+      cD.setOpacity(0.8);                                                     //Gives Opacity
+
+      T1D.setOpacity(0.5);                                                    //Gives Opacity
+      T2D.setOpacity(0.5);                                                    //Gives Opacity
+      
+      aD.setFill(Color.RED);                                                  //Color
+      bD.setFill(Color.RED);                                                  //Color
+      cD.setFill(Color.RED);                                                  //Color
 
       N1D.setFill(Color.RED);                                                 //Color
       N2D.setFill(Color.GREEN);                                               //Gives Opacity
-      R1D.setFill(Color.GREY);                                                //Color
-      R2D.setFill(Color.BLUE);                                                //Gives Opacity
+      N3D.setFill(Color.GREY);                                                //Color
+      N4D.setFill(Color.BLUE);                                                //Gives Opacity
       N1U2D.setFill(Color.YELLOW);                                            //Gives Opacity
+      N5D.setFill(Color.YELLOW);                                              //Color
+      N6D.setFill(Color.BLUE);                                                //Gives Opacity
+      N5I6D.setFill(Color.BLACK);                                             //Gives Opacity
 
       T1D.setFill(Color.RED);                                                 //Gives Opacity
+      T1D.setFill(Color.BLUE);                                                //Gives Opacity
+
+      if(N2.estaDentro(a))
+         aD.setFill(Color.GREEN);
+
+
+
+
+
 
 
       // ================  STANDARD FOR ALL GRAPHICS ====================
@@ -96,10 +120,13 @@ public class GUI extends Application {                                        //
       Group Screen = new Group();                                             //Creating a Group object 
 
       // ******
-      Screen.getChildren().addAll(T1D, R1D, R2D, N1D, N2D, N1U2D, xD, rD, qD);     //Add to scene
+      Screen.getChildren().addAll(T1D, T2D);                                  //Add to scene
+      Screen.getChildren().addAll(N1D,N2D,N1U2D,N3D,N4D,N5D,N6D,N5I6D);       //Add to scene
+      Screen.getChildren().addAll(aD, bD, cD);                                //Add to scene
+      
       // *****
 
-      for (int i = 0; i < 1200; i += 10){                                     //Lets cover all the screen
+      for (int i = 0; i < 1200; i += 20){                                     //Lets cover all the screen
          Line MiniLineA = new Line(0, i, 1200, i);                            //Create Line
          MiniLineA.setOpacity(0.2);                                           //set Opacity
          Line MiniLineB = new Line(i, 0, i, 720);                             //Create Line

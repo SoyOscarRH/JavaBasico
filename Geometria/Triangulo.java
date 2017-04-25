@@ -36,6 +36,20 @@ public class Triangulo{
 		return Resultado;
 	}
 
+
+	Polygon getInteseccionScreen(Triangulo T){
+
+		boolean sePuede = false;										//Veamos si se puede
+		Punto na = new Punto(T.a.getX(), T.b.getY());					//Dame el nuevo punto
+		Punto nb = new Punto(T.b.getX(), T.a.getY());					//Dame el nuevo punto
+		Punto nc = new Punto(T.c.getX(), T.c.getY());					//Dame el nuevo punto
+
+
+		
+
+		return new Rectangulo(nuevoX, nuevoY, nuevoNombre);				//Ahora regresame ese objeto, andale!
+	}
+
 }
 
 
