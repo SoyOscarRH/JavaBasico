@@ -23,6 +23,17 @@ public class Triangulo{
 		return (nombre+"["+this.a+","+this.b+","+this.c+"]");			//Mostramos la info
 	}	
 
+	public boolean equals(Triangulo T1){
+		if (a.getX() != T1.a.getX()) return false;
+		if (a.getY() != T1.a.getY()) return false;
+		if (b.getX() != T1.a.getX()) return false;
+		if (b.getY() != T1.a.getY()) return false;
+		if (c.getX() != T1.a.getX()) return false;
+		if (c.getY() != T1.a.getY()) return false;
+
+		return true;
+	}	
+
 	
 	Polygon getDraw(){
 		Polygon Resultado = new Polygon();
@@ -37,18 +48,16 @@ public class Triangulo{
 	}
 
 
-	Polygon getInteseccionScreen(Triangulo T){
 
-		boolean sePuede = false;										//Veamos si se puede
-		Punto na = new Punto(T.a.getX(), T.b.getY());					//Dame el nuevo punto
-		Punto nb = new Punto(T.b.getX(), T.a.getY());					//Dame el nuevo punto
-		Punto nc = new Punto(T.c.getX(), T.c.getY());					//Dame el nuevo punto
-
-
+	public getIntersectionDraw(Triangulo T1) {
 		
+		
+	    double x = (line.b - this.b) / (this.m - line.m);
+	    double y = this.m * x + this.b;
 
-		return new Rectangulo(nuevoX, nuevoY, nuevoNombre);				//Ahora regresame ese objeto, andale!
+	    return new Point((int) x, (int) y);
 	}
+
 
 }
 
