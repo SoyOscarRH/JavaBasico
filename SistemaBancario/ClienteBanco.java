@@ -1,11 +1,11 @@
-public class ClienteBanco(){
-	public ArrayList<Cuentas> CuentasDelCliente = new ArrayList<Cuentas>();
+public class ClienteBanco() {
+	public ArrayList<Cuenta> CuentasDelCliente = new ArrayList<Cuenta>();
 	private String NombreCompleto;
 
 	
-	public ClienteBanco(ArrayList<Cuentas> CuentasExistentes, String NombreCompleto){
+	public ClienteBanco(ArrayList<Cuenta> CuentasExistentes, String NombreCompleto){
 		CuentasDelCliente = CuentasExistentes;
 	}
-	public getNombreCompleto(){return NombreCompleto;}
+	public String getNombreCompleto(){return NombreCompleto;}
 
 }

@@ -6,29 +6,18 @@ public class Banco{
 		System.out.println("Fecha: "+FechaActual);
 
 
-		Cuenta C1 = new Cuenta(220);
+		BankAccount C1 = new BankAccount(220);
 		System.out.println(C1);
 
-		C1.Retirar(10, "22/03/17");
-		C1.Retirar(15, "25/03/17");
+		C1.TakeOutMoney(10, "22/03/17", "Banco");
+		C1.TakeOutMoney(15, "25/03/17");
 
-		C1.MuestraMovimientos();
+		C1.ShowMovements();
 
 
 
 	}
 
-	private ArrayList<ClienteBanco> ClienteDelBanco;
 
-
-	public boolean DepositaEnCuenta(String NumCuenta, int Dinero){
-		for (ClienteBanco i: ClienteDelBanco) {
-			ArrayList<Cuenta> temporal = ClienteDelBanco.CuentasDelCliente;
-			for (Cuenta j: temporal) {
-				NumCuenta.equals(j.getNumCuenta());
-			}
-
-		}
-	}
 	
 }
