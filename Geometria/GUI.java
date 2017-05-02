@@ -33,8 +33,8 @@ public class GUI extends Application {                                        //
       Rectangulo N2 = new Rectangulo(new Punto(0, 0), new Punto(6, 6), "N2");
       Rectangulo N3 = new Rectangulo(new Punto(-4, 6), new Punto(-16, 12), "N3");
       Rectangulo N4 = new Rectangulo(new Punto(-10, -10), new Punto(-12, -12), "N4");
-      Rectangulo N5 = new Rectangulo(new Punto(4, -12), new Punto(14, -10), "N3");
-      Rectangulo N6 = new Rectangulo(new Punto(6, -10), new Punto(10, -14), "N4");
+      Rectangulo N5 = new Rectangulo(new Punto(-9, 2), new Punto(-3, 8), "N3");
+      Rectangulo N6 = new Rectangulo(new Punto(-7, 4), new Punto(-4, 6), "N4");
 
       System.out.println(N1.getUnion(N2));
       System.out.println(N1.getInteseccion(N2));

@@ -107,8 +107,8 @@ public class Rectangulo{
 
 
 	Rectangle getDraw(){												//Draw the Rectangle
-		double cartX, cartY, h, w;										//Variables
-
+		double cartX, cartY, h, w;										//Variables cartesianas higth and weight
+																		//Ty Oscar del pasado cx
 		if (a.getX() < b.getX()) cartX = a.getX();						//Select bigger
 		else cartX = b.getX();											//Select bigger
 
