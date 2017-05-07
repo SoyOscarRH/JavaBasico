@@ -38,16 +38,25 @@ public class BankAccount {
 	// ====== ATRIBUTES OF AN OBJECT ============ 
 	private String BankAccountNumber;											//Special Number
 	private int Balance;														//Balance
-	private ArrayList<String> MovementDate; 									//Dates of movement
+	private Date ApertureDate;													//Aperture day
+	private ArrayList<Date> MovementDate; 										//Dates of movement
+	private ArrayList<String> MovementInfo; 									//Dates of movement
 
 	// ====== CONSTRUCTORS  =====================
-	public BankAccount(){this(0);}												//Create an BankAccount with $0
-
-	public BankAccount(int Balance){
-		this.Balance = (Balance * 100);											//Yous send me $ y store cents
+	public BankAccount(int Balance, Date ApertureDate){
+		this.Balance = (Balance * 100);											//You send me $ y store cents
 		this.BankAccountNumber = GenerateBankAccountNumber();					//Lets generate an account number
-		MovementDate = new ArrayList<String>();									//An start storing in the array
+		this.ApertureDate = ApertureDate;										//Lets generate an Aperture
+		MovementInfo = new ArrayList<String>();									//An start storing in the array
+		MovementDate = new ArrayList<Date>();									//An start storing in the array
 	}
+	public BankAccount(int Balance, String ApertureDate){						//Create an BankAccount with $$
+		this(Balance, new Date(ApertureDate));									//Call daddy
+	}
+	public BankAccount(Date ApertureDate){this(0, ApertureDate);}				//Create an BankAccount with $0
+	public BankAccount(String ApertureDate){this(0, new Date(ApertureDate));}	//Create an BankAccount with $0
+	public BankAccount(){this(0, new Date(1,1,70));}							//Create an BankAccount with $0
+
 
 	// ====== GETTER / SETTER ===================
 	public int getBalance(){return (Balance/100);}								
@@ -56,17 +65,19 @@ public class BankAccount {
 	// ===== TAKE OUT MY MONEY ===
 	// ===========================
 	public boolean TakeOutMoney(int HowMuch, String Date){						
-		return TakeOutMoney(HowMuch, Date, "Unknow Source");					//if you dont tell me who do it!
+		return TakeOutMoney(HowMuch, Date, "Unknow Source");					//If you dont tell me who do it!
 	}
-	public boolean TakeOutMoney(int HowMuch, String Date, String Comment){
+	public boolean TakeOutMoney(int HowMuch, String StrDate, String Source){
 		HowMuch *= 100;															//You send me $, I work in cents
 
 		if ((Balance - HowMuch) >= 0) Balance -= HowMuch;						//If you have enough $
 		else return false;														//Else you cant do it!
 
-		Date += (": Cash Out $"+(HowMuch/100)+"\tBalance: ");					//Here I will have the string	
-		Date += ((Balance/100)+"."+ShowZeros(Balance%100)+"\t\t"+Comment);		//And here
-		MovementDate.add(Date);													//Add to the list
+		String Info = ("Cash Out $"+(HowMuch/100)+"\tBalance: ");				//Here I will have the string	
+		Info += ((Balance/100)+"."+ShowZeros(Balance%100)+"\t\t"+Source);		//And here
+
+		MovementDate.add(new Date(StrDate));									//Add to the list
+		MovementInfo.add(Info);													//Add to the list
 		return true;															//You make it!
 	}
 
@@ -76,25 +87,29 @@ public class BankAccount {
 	public void AddToBankAccount(int HowMuch, String Date){						
 		AddToBankAccount(HowMuch, Date, "Unknow Source");						//if you dont tell me who do it!
 	}
-	public void AddToBankAccount(int HowMuch, String Date, String Comment){
+	public void AddToBankAccount(int HowMuch, String StrDate, String Source){
 		Balance += (HowMuch * 100);												//You send me $, I work in cents
-		Date += (": Add $"+(HowMuch/100)+"\tBalance Actual: ");					//Here I will have the string	
-		Date += ((Balance/100)+"."+ShowZeros(Balance%100)+"\t\t"+Comment);		//And here
-		MovementDate.add(Date);													//Add to the list
-	}
+		String Info = ("Add Money $"+(HowMuch/100)+"\tBalance: ");				//Here I will have the string	
+		Info += ((Balance/100)+"."+ShowZeros(Balance%100)+"\t\t"+Source);		//And here
 
+		MovementDate.add(new Date(StrDate));									//Add to the list
+		MovementInfo.add(Info);													//Add to the list
+	}
 
 	// =============================
 	// ===== 	SHOW THINGS 	 ===
 	// =============================
 	public void ShowMovements(){
-		for (String Movimiento : MovementDate) System.out.println(Movimiento);	//Show all the Movements
+		for (int i = 0; i < MovementInfo.size(); i++) {							//For each movement
+			System.out.print(MovementDate.get(i));								//Show all the Movements
+			System.out.println("\t\t"+MovementInfo.get(i));						//Show all the Movements			
+		}
 	}
 
 	public String toString(){
 		String resultado = new String();										//Just to show
 		resultado += ("== BankAccountNumber: "+BankAccountNumber+" ==\n");		//Show
-		resultado += (" Balance: "+(Balance/100)+"."+ShowZeros(Balance%100));	//Show
+		resultado += ("Balance: $"+(Balance/100)+"."+ShowZeros(Balance%100));	//Show
 		return resultado;														//Go away!
 	}
 

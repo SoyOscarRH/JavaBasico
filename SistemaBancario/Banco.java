@@ -6,14 +6,14 @@ public class Banco{
 		System.out.println("Date: "+FechaActual);
 
 
-		BankAccount C1 = new BankAccount(220);
+		BankAccount C1 = new BankAccount(100, "23/03/17");
 		System.out.println(C1);
 
 		C1.TakeOutMoney(10, "22/03/17", "Bank");
 		C1.TakeOutMoney(15, "25/03/17");
+		C1.AddToBankAccount(15, "27/03/17", "Me :D");
 
 		C1.ShowMovements();
-
 
 
 	}
