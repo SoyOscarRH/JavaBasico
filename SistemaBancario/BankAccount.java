@@ -57,7 +57,6 @@ public abstract class BankAccount {
 	public BankAccount(String ApertureDate){this(0, new Date(ApertureDate));}	//Create an BankAccount with $0
 	public BankAccount(){this(0, new Date(1,1,70));}							//Create an BankAccount with $0
 
-
 	// ====== GETTER / SETTER ===================
 	public int getBalance(){return (Balance/100);}	
 	public String getID(){return BankAccountNumber;}								

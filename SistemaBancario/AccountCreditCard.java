@@ -6,30 +6,29 @@ import java.util.*;																//Library
 import java.time.*;																//Library
 
 
-public class AccountSavings extends BankAccount implements Taxes{ 
+public class AccountCreditCard extends BankAccount{ 
 
 	// ====== ATRIBUTES OF AN OBJECT ============ 
-	private double InterestRate;
+	private double CreditRate;
 
 	// ====== CONSTRUCTORS  =====================
-	public AccountSavings(int Balance, Date ApertureDate, double Rate){
+	public AccountCreditCard(int Balance, Date ApertureDate, double Rate){
 		super(Balance, ApertureDate);											//Call daddy
 		this.InterestRate = Rate;												//Interests
 	}
-	public AccountSavings(int Balance, String ApertureDate, double Rate){		//Create an BankAccount with $$
+	public AccountCreditCard(int Balance, String ApertureDate, double Rate){	//Create an BankAccount with $$
 		this(Balance, new Date(ApertureDate), Rate);							//Call daddy
 	}
-	public AccountSavings(Date ApertureDate, double Rate){							
+	public AccountCreditCard(Date ApertureDate, double Rate){							
 		this(0, ApertureDate, Rate);											//Create an BankAccount with $0
 	}				
-	public AccountSavings(String ApertureDate, double Rate){
+	public AccountCreditCard(String ApertureDate, double Rate){
 		this(0, new Date(ApertureDate), Rate);									//Create an BankAccount with $0
 	}
-	public AccountSavings(double Rate){this(0, new Date(1,1,70), Rate);}		//Create an BankAccount with $0
-
+	public AccountCreditCard(double Rate){this(0, new Date(1,1,70), Rate);}		//Create an BankAccount with $0
 
 	public void PayMontlyInterest(){
-		int HowMuch = (int)(Balance*InterestRate);
+		int HowMuch = (int)(Balance*InterestRate);						
 		Balance += (HowMuch);													//You send me $, I work in cents
 		String Info = ("Add Money $"+(HowMuch/100)+"\tBalance: ");				//Here I will have the string
 		Info += ((Balance/100)+"."+ShowZeros(Balance%100));						//And here
