@@ -6,7 +6,7 @@ import java.util.*;																//Library
 import java.time.*;																//Library
 
 
-public class BankAccount { 
+public abstract class BankAccount { 
 
 	//============================================================
 	// ==== STATIC CLASS ATRIBUTES AND METHODS: SERIAL NUMBER ====
@@ -16,16 +16,16 @@ public class BankAccount {
 	private static char SerialChar = 'A';										//Keep control of NumberClient
 
 	// ======= CREATE ACCOUNT NUMBER ============
-	public static String GenerateBankAccountNumber(){		
+	protected static String GenerateBankAccountNumber(){		
 		Serial++;																//Give me serial number
 		if (Serial > 9) {SerialChar++; Serial = 0;}								//Reset the Serial number
 		return (Character.toString(SerialChar) + ShowZeros(Serial));			//Return the String
 	}
 
 	// ====== SHOW STRING WITH ZEROS ============
-	public static String ShowZeros(int number){
+	protected static String ShowZeros(int number){
 		String numberAsString = new String();									//Store result
-		if (number < 10) numberAsString += "00";								//Add 	
+		if (number < 10 && number > 0) numberAsString += "00";					//Add 	
 		else if (number < 100) numberAsString += "0";							//Add
 		return numberAsString + Integer.toString(number);						//Return the necessary
 	}
@@ -36,11 +36,11 @@ public class BankAccount {
 	//===========================================================
 
 	// ====== ATRIBUTES OF AN OBJECT ============ 
-	private String BankAccountNumber;											//Special Number
-	private int Balance;														//Balance
-	private Date ApertureDate;													//Aperture day
-	private ArrayList<Date> MovementDate; 										//Dates of movement
-	private ArrayList<String> MovementInfo; 									//Dates of movement
+	protected String BankAccountNumber;											//Special Number
+	protected int Balance;														//Balance
+	protected Date ApertureDate;												//Aperture day
+	protected ArrayList<Date> MovementDate; 									//Dates of movement
+	protected ArrayList<String> MovementInfo; 									//Dates of movement
 
 	// ====== CONSTRUCTORS  =====================
 	public BankAccount(int Balance, Date ApertureDate){
@@ -59,7 +59,8 @@ public class BankAccount {
 
 
 	// ====== GETTER / SETTER ===================
-	public int getBalance(){return (Balance/100);}								
+	public int getBalance(){return (Balance/100);}	
+	public String getID(){return BankAccountNumber;}								
 
 	// ===========================
 	// ===== TAKE OUT MY MONEY ===
@@ -84,12 +85,12 @@ public class BankAccount {
 	// =============================
 	// ===== 	ADD TO ACCOUNT	 ===
 	// =============================
-	public void AddToBankAccount(int HowMuch, String Date){						
+	public void AddToBankAccount(int HowMuch, String Date){			
 		AddToBankAccount(HowMuch, Date, "Unknow Source");						//if you dont tell me who do it!
 	}
 	public void AddToBankAccount(int HowMuch, String StrDate, String Source){
 		Balance += (HowMuch * 100);												//You send me $, I work in cents
-		String Info = ("Add Money $"+(HowMuch/100)+"\tBalance: ");				//Here I will have the string	
+		String Info = ("Add Money $"+(HowMuch)+"\tBalance: ");					//Here I will have the string
 		Info += ((Balance/100)+"."+ShowZeros(Balance%100)+"\t\t"+Source);		//And here
 
 		MovementDate.add(new Date(StrDate));									//Add to the list
@@ -102,15 +103,22 @@ public class BankAccount {
 	public void ShowMovements(){
 		for (int i = 0; i < MovementInfo.size(); i++) {							//For each movement
 			System.out.print(MovementDate.get(i));								//Show all the Movements
-			System.out.println("\t\t"+MovementInfo.get(i));						//Show all the Movements			
+			System.out.println("\t"+MovementInfo.get(i));						//Show all the Movements			
 		}
 	}
 
 	public String toString(){
 		String resultado = new String();										//Just to show
-		resultado += ("== BankAccountNumber: "+BankAccountNumber+" ==\n");		//Show
+		resultado += ("Bank Account: "+BankAccountNumber+": ");					//Show
 		resultado += ("Balance: $"+(Balance/100)+"."+ShowZeros(Balance%100));	//Show
 		return resultado;														//Go away!
 	}
+
+
+	// =============================
+	// ===== 	TO MY SONS   	 ===
+	// =============================
+	public abstract void PayMontlyInterest();
+	public abstract void PayYearlyInterest();
 
 }	

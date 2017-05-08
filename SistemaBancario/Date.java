@@ -1,6 +1,12 @@
 import java.util.*;
 
 public class Date{
+
+
+	public static String Now(){
+		return "1/1/70";
+	}
+
 	private int day, month, year;								//You know, this is a date
 
 	Date(int day, int month, int year){							//======= CONSTRUCTOR =============
