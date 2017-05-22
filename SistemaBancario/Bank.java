@@ -15,7 +15,7 @@ public class Bank{
         BankAccount SomeGuySavings = SomeGuy.getAccount(C1.getID());
 
         SomeGuySavings.TakeOutMoney(10, "22/03/17", "Bank");
-        SomeGuySavings.TakeOutMoney(15, "25/03/1    7");
+        SomeGuySavings.TakeOutMoney(15, "25/03/17");
         SomeGuySavings.AddToBankAccount(15, "30/03/17", "Me :D");
         SomeGuySavings.PayYearlyInterest();
 
