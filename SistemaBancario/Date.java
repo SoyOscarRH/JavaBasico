@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Date{
 
-
 	public static String Now(){
 		return "1/1/70";
 	}

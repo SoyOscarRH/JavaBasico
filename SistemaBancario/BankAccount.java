@@ -39,8 +39,7 @@ public abstract class BankAccount {
 	protected String BankAccountNumber;											//Special Number
 	protected int Balance;														//Balance
 	protected Date ApertureDate;												//Aperture day
-	protected ArrayList<Date> MovementDate; 									//Dates of movement
-	protected ArrayList<String> MovementInfo; 									//Dates of movement
+	protected Movements; 														//Movements
 
 	// ====== CONSTRUCTORS  =====================
 	public BankAccount(int Balance, Date ApertureDate){

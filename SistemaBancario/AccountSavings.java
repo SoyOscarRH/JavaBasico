@@ -25,7 +25,7 @@ public class AccountSavings extends BankAccount implements Taxes{
 	public AccountSavings(String ApertureDate, double Rate){
 		this(0, new Date(ApertureDate), Rate);									//Create an BankAccount with $0
 	}
-	public AccountSavings(double Rate){this(0, new Date(1,1,70), Rate);}		//Create an BankAccount with $0
+	public AccountSavings(double Rate){this(0, new Date(Date.Now()), Rate);}	//Create an BankAccount with $0
 
 
 	public void PayMontlyInterest(){
