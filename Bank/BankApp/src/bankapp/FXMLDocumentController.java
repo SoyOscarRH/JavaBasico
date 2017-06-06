@@ -7,11 +7,15 @@
 package bankapp;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSlider;
 import java.awt.event.InputMethodEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Slider;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 public class FXMLDocumentController {
 
@@ -25,11 +29,34 @@ public class FXMLDocumentController {
     private JFXButton ReportButton;
 
     @FXML
-    private JFXButton ActionButton;
+    private Slider MoneySelector;
+
+    @FXML
+    private Text MoneyText;
     
     @FXML
-    void handleButtonAction(ActionEvent event) {
-        ActionButton.setDisable(true);
+    private JFXButton ActionButton;
+
+    @FXML
+    private AnchorPane MoneySection;
+    
+    @FXML
+    void setMoneySectionToPay(ActionEvent event) {
+        TakeOutMoneyButton.setDisable(true);
+        PayButton.setDisable(true);
+        MoneySection.setVisible(true);
+        
+        ActionButton.setText("Pagar");
+    }
+    
+
+    @FXML
+    void setMoneySectionToTakeOut(ActionEvent event) {
+        TakeOutMoneyButton.setDisable(true);
+        PayButton.setDisable(true);
+        MoneySection.setVisible(true);
+        
+        ActionButton.setText("Cobrar");
     }
 
 }
