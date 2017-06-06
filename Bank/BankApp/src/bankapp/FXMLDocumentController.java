@@ -6,28 +6,30 @@
 
 package bankapp;
 
+import com.jfoenix.controls.JFXButton;
+import java.awt.event.InputMethodEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 
+public class FXMLDocumentController {
 
-public class FXMLDocumentController implements Initializable {
+    @FXML
+    private JFXButton PayButton;
+
+    @FXML
+    private JFXButton TakeOutMoneyButton;
+
+    @FXML
+    private JFXButton ReportButton;
+
+    @FXML
+    private JFXButton ActionButton;
     
     @FXML
-    private Label label;
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    void handleButtonAction(ActionEvent event) {
+        ActionButton.setDisable(true);
     }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+
 }
