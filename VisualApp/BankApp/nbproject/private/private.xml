@@ -5,7 +5,8 @@
         <group>
             <file>file:/Users/mac/Downloads/LearningJava/VisualApp/BankApp/src/bankapp/Client.java</file>
             <file>file:/Users/mac/Downloads/LearningJava/VisualApp/BankApp/src/bankapp/BankApp.java</file>
-            <file>file:/Users/mac/Downloads/LearningJava/VisualApp/BankApp/src/bankapp/Movement.java</file>
+            <file>file:/Users/mac/Downloads/LearningJava/VisualApp/BankApp/src/bankapp/AccountCredit.java</file>
+            <file>file:/Users/mac/Downloads/LearningJava/VisualApp/BankApp/src/bankapp/AccountCheques.java</file>
         </group>
     </open-files>
 </project-private>

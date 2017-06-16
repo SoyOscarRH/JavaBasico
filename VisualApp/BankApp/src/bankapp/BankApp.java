@@ -286,6 +286,7 @@ public class BankApp extends Application implements Serializable {
                 ActionButton2.setVisible(true);
                 ActionButton2.setDisable(false);
                 ActionButton2.setText("Pagame Interes");
+                Action2ToCall = "PayMeInterest";
             }
 
 
@@ -327,10 +328,11 @@ public class BankApp extends Application implements Serializable {
                 ActionButton2.setVisible(true);
                 ActionButton2.setDisable(false);
                 ActionButton2.setText("Pagame Interes");
+                Action2ToCall = "PayMeInterest";
             }
 
             Action1ToCall = "TakeOutMoney";
-            Action2ToCall = "PayMeInterest";
+            
 
             CloseAndSaveData.setVisible(false);
         }
@@ -624,6 +626,8 @@ public class BankApp extends Application implements Serializable {
                 CloseAndSaveData.setVisible(true);
                 CloseAndSaveData.setText("Salva Información");
                 SaveOrRetrived = "SaveInfo";
+
+                DateText.setText(DateLocal.toString());
             }
             catch (Exception e) {
                 System.out.println("No pude sacar datos");

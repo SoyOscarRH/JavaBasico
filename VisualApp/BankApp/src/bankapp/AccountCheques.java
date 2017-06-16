@@ -10,13 +10,15 @@ import java.time.*;																//Library
 public class AccountCheques extends BankAccount implements Serializable{ 
 
 	// ====== ATRIBUTES OF AN OBJECT ============ 
-	private int SobreGiro;
+    private int SobreGiro;
+	private int MaxSobreGiro;
 
 	// ====== CONSTRUCTORS  =====================
 	public AccountCheques(int Balance, Date ApertureDate, int SobreGiro){
 		super(Balance, ApertureDate);											//Call daddy
 		this.Type = "Cheques";
 		this.SobreGiro = SobreGiro*100;
+        this.MaxSobreGiro = SobreGiro*100;
 	}
 
 
@@ -73,12 +75,12 @@ public class AccountCheques extends BankAccount implements Serializable{
             Balance += HowMuchTemporal;                                             //You send me $, I work in cents
     	}
     	else {
-    		if (SobreGiro > HowMuchTemporal) SobreGiro-= HowMuchTemporal;
-    		else{
-    			HowMuchTemporal -= SobreGiro;
-    			SobreGiro = 0;
-    			Balance += HowMuchTemporal;
-    		}
+            SobreGiro += HowMuchTemporal;
+
+            if (SobreGiro > MaxSobreGiro) {
+                Balance = SobreGiro - MaxSobreGiro;
+                SobreGiro = MaxSobreGiro;
+            }
     	}
 
 
