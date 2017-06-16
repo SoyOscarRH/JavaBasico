@@ -9,7 +9,7 @@ public class Movement {
 	private String DateOfAction;
 	private String Balance;
 	private String SpecialRow;
-	private int Mode; 					//
+	private int Mode; 					
 
 
 	//Constructor 
@@ -46,5 +46,14 @@ public class Movement {
 
       String getDate(){
             return DateOfAction;
+      }
+
+      public String toString(){
+            String Data = "";
+
+            Data += "Concepto: "+Concept+" Autor: "+Author;
+            Data += ("\nCantidad: $"+HowMuch+" Actual Balance: "+Balance);
+            
+            return Data;
       }
 }	

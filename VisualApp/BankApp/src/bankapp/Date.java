@@ -41,7 +41,7 @@ public class Date{
     }
 
     public String toString(){                                   //======= TOSTRING ================
-        return "("+day+"/"+month+"/"+year+")";                  //The most boring to string
+        return day+"/"+month+"/"+year;                          //The most boring to string
     }
 
     private void FixInput(){                                    //======= FUN FUNCTION ============

@@ -121,4 +121,22 @@ public abstract class BankAccount {
         MovementData.add(new Movement(Info));
     }
 
+
+    // =============================
+    // =====    TO STRING     ======
+    // =============================
+
+    public String toString(){
+        String Data = "Account: ";
+        Data += " ID: " + BankAccountNumber;
+        Data += " Date: " + ApertureDate.toString();
+        Data += " Balance: " + "$"+String.valueOf(Balance/100)+"."+String.valueOf(ShowZeros(Balance%100));
+
+        return Data;
+    }
+
+
+    public ArrayList<Movement> getMovements(){
+        return MovementData;
+    }
 }   

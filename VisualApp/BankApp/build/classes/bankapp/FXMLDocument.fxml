@@ -8,37 +8,37 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bankapp.BankApp">
+<AnchorPane id="AnchorPane" prefHeight="577.0" prefWidth="692.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bankapp.BankApp">
 
    <children>
-      <Text fontSmoothingType="LCD" layoutX="52.0" layoutY="56.0" opacity="0.35" strokeType="OUTSIDE" strokeWidth="0.0" text="Bank App: Control del Cliente" textAlignment="CENTER" wrappingWidth="548.21875">
+      <Text fontSmoothingType="LCD" layoutX="119.0" layoutY="61.0" opacity="0.35" strokeType="OUTSIDE" strokeWidth="0.0" text="Bank App: Control del Cliente" textAlignment="CENTER" wrappingWidth="548.21875">
          <font><Font name="Lucida Grande Bold" size="36.0" /></font>
       </Text>
 
-      <JFXProgressBar layoutX="39.0" layoutY="93.0" prefHeight="0.0" prefWidth="506.0" />
+      <JFXProgressBar layoutX="39.0" layoutY="93.0" prefHeight="0.0" prefWidth="656.0" />
 
 
 
-      <JFXButton id="PayButton" fx:id="PayButton" buttonType="RAISED" disable="true" layoutX="107.0" layoutY="291.0" onAction="#setMoneySectionToPay" prefHeight="58.0" prefWidth="182.0" ripplerFill="WHITE" style="-fx-background-color: #5C6BC0;" text="Pagar" textFill="#edecf5">
+      <JFXButton id="PayButton" fx:id="PayButton" buttonType="RAISED" disable="true" layoutX="380.0" layoutY="275.0" onAction="#setMoneySectionToPay" prefHeight="58.0" prefWidth="182.0" ripplerFill="WHITE" style="-fx-background-color: #5C6BC0;" text="Pagar" textFill="#edecf5">
          <font><Font size="16.0" /></font>
       </JFXButton>
 
 
 
-      <JFXComboBox id="AccountSelector" fx:id="ComboBoxAccount" layoutX="158.0" layoutY="144.0" onAction="#setAccount" prefHeight="25.0" prefWidth="204.0" unFocusColor="#1c4d1f" />
+      <JFXComboBox id="AccountSelector" fx:id="ComboBoxAccount" layoutX="185.0" layoutY="157.0" onAction="#setAccount" prefHeight="27.0" prefWidth="223.0" unFocusColor="#1c4d1f" />
 
-      <Text fill="#545353" layoutX="40.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. Cuenta">
+      <Text fill="#545353" layoutX="59.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. Cuenta">
          <font><Font name="Lucida Grande" size="20.0" /></font>
       </Text>
 
 
-      <JFXButton id="TakeOutMoneyButton" fx:id="TakeOutMoneyButton" buttonType="RAISED" disable="true" layoutX="108.0" layoutY="219.0" onAction="#setMoneySectionToTakeOut" prefHeight="58.0" prefWidth="182.0" ripplerFill="WHITE" style="-fx-background-color: #5C6BC0;" text="Sacar" textFill="#edecf5">
+      <JFXButton id="TakeOutMoneyButton" fx:id="TakeOutMoneyButton" buttonType="RAISED" disable="true" layoutX="178.0" layoutY="275.0" onAction="#setMoneySectionToTakeOut" prefHeight="58.0" prefWidth="182.0" ripplerFill="WHITE" style="-fx-background-color: #5C6BC0;" text="Sacar" textFill="#edecf5">
          <font><Font size="16.0" /></font>
       </JFXButton>
 
 
 
-      <AnchorPane id="MoneySection" fx:id="PromptSection" layoutY="386.0" prefHeight="222.0" prefWidth="689.0" style="-fx-background-color: #e0e0e0; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0.0, 0.0);" visible="false">
+      <AnchorPane id="MoneySection" fx:id="PromptSection" layoutX="-12.0" layoutY="235.0" prefHeight="343.0" prefWidth="722.0" style="-fx-background-color: #e0e0e0; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0.0, 0.0);" visible="false">
          <children>
       
             <JFXButton id="ReportButton" fx:id="ActionButton2" buttonType="RAISED" disable="true" layoutX="421.0" layoutY="116.0" prefHeight="71.0" prefWidth="223.0" ripplerFill="WHITE" style="-fx-background-color: #009688;" text="Genera Reporte" textFill="#edecf5">
@@ -53,7 +53,7 @@
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="PromptInfo1" layoutX="187.0" layoutY="59.0" prefHeight="26.0" prefWidth="113.0">
+            <JFXTextField fx:id="PromptInfo1" layoutX="180.0" layoutY="61.0" prefHeight="26.0" prefWidth="157.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></JFXTextField>
@@ -62,16 +62,16 @@
                   <Font name="Lucida Grande" size="20.0" />
                </font>
             </Text>
-            <JFXButton id="ActionButton" fx:id="BorrarSelection" buttonType="RAISED" layoutX="28.0" layoutY="162.0" onAction="#setOriginal" prefHeight="37.0" prefWidth="215.0" ripplerFill="WHITE" style="-fx-background-color: #f44336;" text="Deshacer Operación" textFill="#edecf5">
+            <JFXButton id="ActionButton" fx:id="BorrarSelection" buttonType="RAISED" layoutX="65.0" layoutY="236.0" onAction="#setOriginal" prefHeight="37.0" prefWidth="215.0" ripplerFill="WHITE" style="-fx-background-color: #f44336;" text="Deshacer Operación" textFill="#edecf5">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="PromptInfo2" layoutX="189.0" layoutY="95.0" prefHeight="31.0" prefWidth="116.0">
+            <JFXTextField fx:id="PromptInfo2" layoutX="172.0" layoutY="124.0" prefHeight="31.0" prefWidth="159.0">
                <font>
                   <Font size="18.0" />
                </font></JFXTextField>
-            <Text fx:id="PromptText2" fill="#545353" layoutX="53.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad:">
+            <Text fx:id="PromptText2" fill="#545353" layoutX="44.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad:">
                <font>
                   <Font name="Lucida Grande" size="20.0" />
                </font>
@@ -85,12 +85,32 @@
 
          </children>
       </AnchorPane>
-      <Text fx:id="DateText" fill="#545353" layoutX="549.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12/02/17" wrappingWidth="125.59292602539062">
+      <Text fx:id="DateText" fill="#545353" layoutX="329.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12/02/17" wrappingWidth="125.59292602539062">
          <font>
             <Font name="Lucida Grande" size="20.0" />
          </font>
       </Text>
-      <JFXButton id="PayButton" fx:id="AddAccount" buttonType="RAISED" layoutX="377.0" layoutY="139.0" onAction="#setAddAccount" prefHeight="37.0" prefWidth="107.0" ripplerFill="WHITE" style="-fx-background-color: #006064;" text="Añadir" textFill="#edecf5">
+      <JFXButton id="PayButton" fx:id="AddAccount" buttonType="RAISED" layoutX="455.0" layoutY="151.0" onAction="#setAddAccount" prefHeight="37.0" prefWidth="107.0" ripplerFill="WHITE" style="-fx-background-color: #26A69A;" text="Añadir" textFill="#edecf5">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane id="MoneySection" fx:id="PromptSectionInfo" layoutX="-8.0" layoutY="230.0" prefHeight="351.0" prefWidth="719.0" style="-fx-background-color: #e0e0e0; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0.0, 0.0);" visible="false">
+         <children>
+            <JFXButton id="ActionButton" fx:id="GetOutInfoPane" buttonType="RAISED" layoutX="558.0" layoutY="254.0" onAction="#setOriginal" prefHeight="52.0" prefWidth="112.0" ripplerFill="WHITE" style="-fx-background-color: #f44336;" text="Salir" textFill="#edecf5">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXComboBox fx:id="ComboBoxInfo" layoutX="73.0" layoutY="85.0" prefHeight="139.0" prefWidth="607.0" />
+            <Text fx:id="InformationText" fill="#545353" layoutX="270.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Información" textAlignment="CENTER" wrappingWidth="229.0509033203125">
+               <font>
+                  <Font name="Lucida Grande" size="28.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <JFXButton id="TakeOutMoneyButton" fx:id="InfoAccountButton" buttonType="RAISED" disable="true" layoutX="571.0" layoutY="152.0" onAction="#setInfoSectionToSeeAccount" prefHeight="37.0" prefWidth="107.0" ripplerFill="WHITE" style="-fx-background-color: #26A69A;" text="Info" textFill="#edecf5">
          <font>
             <Font size="16.0" />
          </font>
