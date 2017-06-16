@@ -36,11 +36,6 @@ public class Client implements Serializable {
 		return Result;
 	}
 
-	// ***** SHOW REPORT ********************
-	public void ReportState(){
-		System.out.println("== REPORT STATE ==\n");
-
-	}
 
 	public HashMap<String, BankAccount> getAccounts(){
 		return Accounts;

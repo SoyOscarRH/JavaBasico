@@ -15,7 +15,6 @@ public class AccountCheques extends BankAccount implements Serializable{
 	// ====== CONSTRUCTORS  =====================
 	public AccountCheques(int Balance, Date ApertureDate, int SobreGiro){
 		super(Balance, ApertureDate);											//Call daddy
-		this.InterestRate = Rate;												//Interests
 		this.Type = "Cheques";
 		this.SobreGiro = SobreGiro*100;
 	}
@@ -31,21 +30,26 @@ public class AccountCheques extends BankAccount implements Serializable{
 
     public boolean TakeOutMoney(int HowMuch, String StrDate, String Source){
         HowMuch *= 100;                                                         //You send me $, I work in cents
+       	int HowMuchTemporal = HowMuch;
 
-
-        if ((Balance - HowMuch) >= 0) Balance -= HowMuch;                       //If you have enough $
-        else if ( (Balance+SobreGiro) >= HowMuch ) {
-        	HowMuch -= Balance;
+        if ((Balance - HowMuchTemporal) >= 0) Balance -= HowMuchTemporal;                       //If you have enough $
+        else if ( (Balance+SobreGiro) >= HowMuchTemporal ) {
+        	HowMuchTemporal -= Balance;
         	Balance = 0;
-        	SobreGiro -= HowMuch;
+        	SobreGiro -= HowMuchTemporal;
         }
-        else {}
+        else {
+        	return false;
+        }
 
         Map Info = new HashMap<>();
+        String SobreGiroString = ("SobreGiro: $"+String.valueOf(SobreGiro/100)+"."+String.valueOf(ShowZeros(SobreGiro%100)));
+        SobreGiroString += ("\n" + "Balance: " +"$"+String.valueOf(Balance/100)+"."+String.valueOf(ShowZeros(Balance%100)));
+
         Info.put("Concept", "TakeOutMoney");
         Info.put("Author", Source);
         Info.put("HowMuch", "$"+String.valueOf(HowMuch/100)+"."+String.valueOf(ShowZeros(HowMuch%100)));
-        Info.put("Balance", "$"+String.valueOf(Balance/100)+"."+String.valueOf(ShowZeros(Balance%100)));
+        Info.put("Balance", SobreGiroString);
 
         MovementData.add(new Movement(Info));
         return true;                                                            //You make it!
@@ -62,16 +66,42 @@ public class AccountCheques extends BankAccount implements Serializable{
     }
 
     public void AddToBankAccount(int HowMuch, String StrDate, String Source){
-        Balance += (HowMuch * 100);                                             //You send me $, I work in cents
         HowMuch *= 100;
+       	int HowMuchTemporal = HowMuch;
+
+    	if (Balance < 0){
+            Balance += HowMuchTemporal;                                             //You send me $, I work in cents
+    	}
+    	else {
+    		if (SobreGiro > HowMuchTemporal) SobreGiro-= HowMuchTemporal;
+    		else{
+    			HowMuchTemporal -= SobreGiro;
+    			SobreGiro = 0;
+    			Balance += HowMuchTemporal;
+    		}
+    	}
+
 
         Map Info = new HashMap<>();
+        String SobreGiroString = ("SobreGiro: $"+String.valueOf(SobreGiro/100)+"."+String.valueOf(ShowZeros(SobreGiro%100)));
+        SobreGiroString += ("\n" + "Balance: " +"$"+String.valueOf(Balance/100)+"."+String.valueOf(ShowZeros(Balance%100)));
+
         Info.put("Concept", "Add Money");
         Info.put("Author", Source);
         Info.put("HowMuch", "$"+String.valueOf(HowMuch/100)+"."+String.valueOf(ShowZeros(HowMuch%100)));
-        Info.put("Balance", "$"+String.valueOf(Balance/100)+"."+String.valueOf(ShowZeros(Balance%100)));
+        Info.put("Balance", SobreGiroString);
 
         MovementData.add(new Movement(Info));
+    }
+
+    @Override
+    public void PayMontlyInterest() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void PayYearlyInterest() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

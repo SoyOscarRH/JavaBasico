@@ -423,6 +423,12 @@ public class BankApp extends Application implements Serializable {
                 TemporalAccount = new AccountSavings(TemporalBalance, DateLocal, 0.2);
             }
 
+            // === GET ALL POSIBLE ACCOUNTS ===
+            if  ("Cheques".equals(TemporalType)){
+                CorrectData = true;
+                TemporalAccount = new AccountCheques(TemporalBalance, DateLocal, 10000);
+            }
+
             // === ADD TO THE ACCOUNT NOW ===
             if (CorrectData){
                 TestSubject.AddAccount(TemporalAccount);
@@ -596,8 +602,13 @@ public class BankApp extends Application implements Serializable {
                     TemporalAccount = entry.getValue();
                     Options.add(TemporalAccount.Type+" - "+TemporalAccount.getID());
                 }
+
+                InfoAccountButton.setDisable(false);
                 
                 ComboBoxAccount.setItems(Options);
+                CloseAndSaveData.setVisible(true);
+                CloseAndSaveData.setText("Salva Información");
+                SaveOrRetrived = "SaveInfo";
             }
             catch (Exception e) {
                 System.out.println("No pude sacar datos");
