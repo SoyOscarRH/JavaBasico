@@ -24,13 +24,22 @@ public class AccountCredit extends BankAccount implements Taxes, Serializable{
 
 
 	public void PayMontlyInterest(){
-		int HowMuch = (int)(Balance*InterestRate);
-		Balance -= (HowMuch);													//You send me $, I work in cents
 
-		if (Balance < 0){
-			Deficit = Balance *-1;
-			Balance = 0;
-		}
+        int HowMuch = 0;
+        
+        if (Balance < 0){
+            HowMuch = (int)(Balance*InterestRate);
+            Balance -= (HowMuch);                                                   //You send me $, I work in cents
+
+            if (Balance < 0){
+                Deficit = Balance *-1;
+                Balance = 0;
+            }
+        }
+        else{
+            HowMuch = (int)(Deficit*InterestRate);
+            Deficit += HowMuch;
+        }
 
 		String CreditBalance = ("Deficit: $"+String.valueOf(Deficit/100)+"."+String.valueOf(ShowZeros(Deficit%100)));
         CreditBalance += ("\n" + "Ratio de Interes: " +"%"+String.valueOf(InterestRate*100));
@@ -45,26 +54,30 @@ public class AccountCredit extends BankAccount implements Taxes, Serializable{
         MovementData.add(new Movement(Info));
 	}
 
-	// =============================
+
+    // =============================
     // =====    ADD TO ACCOUNT   ===
     // =============================
 
+        @Override
     public void AddToBankAccount(int HowMuch, String Date){         
         AddToBankAccount(HowMuch, Date, "Unknow Source");                       //if you dont tell me who do it!
     }
 
+        @Override
     public void AddToBankAccount(int HowMuch, String StrDate, String Source){
         HowMuch *= 100;
-		int HowMuchTemporal = HowMuch;
+        
+        if (Deficit > 0){
+            Deficit -= HowMuch;
 
-		if (Balance < 0){
-			Deficit -= HowMuch;
-			if (Deficit < 0){
-				Balance = Deficit*-1;
-				Deficit = 0;
-			}
-		}  
-		else  Balance += (HowMuch);                                             //You send me $, I work in cents
+            if (Deficit < 0){
+                Balance = Deficit * -1;
+                Deficit = 0;
+            }
+        }
+        else Balance += (HowMuch);                                             //You send me $, I work in cents
+
 
         Map Info = new HashMap<>();
 
@@ -79,6 +92,10 @@ public class AccountCredit extends BankAccount implements Taxes, Serializable{
 
         MovementData.add(new Movement(Info));
     }
+
+
+
+
 
     // ===========================
     // ===== TAKE OUT MY MONEY ===
@@ -95,7 +112,7 @@ public class AccountCredit extends BankAccount implements Taxes, Serializable{
         else if ( (Balance+MaxDeficit) >= HowMuchTemporal ) {
             HowMuchTemporal -= Balance;
             Balance = 0;
-            Deficit -= HowMuchTemporal;
+            Deficit = HowMuchTemporal;
         }
         else {
             return false;
