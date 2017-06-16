@@ -43,6 +43,7 @@ public abstract class BankAccount {
         protected int Balance;                                                      //Balance
         protected Date ApertureDate;                                                //Aperture day
         protected ArrayList<Movement> MovementData;                                 //Info on change
+        protected String Type;                                                      //Info on change
 
         // ====== CONSTRUCTORS  =====================
         public BankAccount(int Balance, Date ApertureDate){
@@ -111,6 +112,7 @@ public abstract class BankAccount {
 
     public void AddToBankAccount(int HowMuch, String StrDate, String Source){
         Balance += (HowMuch * 100);                                             //You send me $, I work in cents
+        HowMuch *= 100;
 
         Map Info = new HashMap<>();
         Info.put("Concept", "Add Money");
@@ -134,6 +136,8 @@ public abstract class BankAccount {
 
         return Data;
     }
+
+    public String getType(){return Type;}
 
 
     public ArrayList<Movement> getMovements(){

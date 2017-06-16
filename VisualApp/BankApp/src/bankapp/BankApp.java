@@ -13,7 +13,12 @@ import javafx.stage.Stage;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import javafx.collections.ObservableList;
 
 
@@ -107,6 +112,8 @@ public class BankApp extends Application {
         @FXML
         private JFXButton InfoAccountButton;
 
+        @FXML
+        private JFXButton CloseAndSaveData;
 
     //*********************************************************************
     //**********************   SET THE LAYOUT   ***************************
@@ -153,6 +160,7 @@ public class BankApp extends Application {
 
 
 
+
         //*************************************************
         //******       TURN LAYOUT TO SEE INFO    *********
         //*************************************************
@@ -190,6 +198,9 @@ public class BankApp extends Application {
             
             if (!("Nothing".equals(NameAccount))){
                 ArrayList<Movement> Data = TestSubject.getAccount(NameAccount).getMovements();
+
+                Data = new ArrayList<>(Data);
+                Collections.reverse(Data);
 
                 for (Movement m : Data) {
                     TextInfo.add(m.toString());
@@ -260,6 +271,8 @@ public class BankApp extends Application {
             PromptTextError.setVisible(false);
 
             Action1ToCall = "PayMoney";
+
+
         }
 
         //*************************************************
@@ -289,7 +302,16 @@ public class BankApp extends Application {
             ActionButton2.setVisible(false);
             PromptTextError.setVisible(false);
 
+
+            String Type = TestSubject.getAccount(NameAccount).getType();
+            if ("Savings".equals(Type)){
+                ActionButton2.setVisible(true);
+                ActionButton2.setDisable(false);
+                ActionButton2.setText("Pagame Interes");
+            }
+
             Action1ToCall = "TakeOutMoney";
+            Action2ToCall = "PayMeInterest";
         }
 
 
@@ -307,7 +329,7 @@ public class BankApp extends Application {
     //********************************************
 
         //*************************************
-        //****   ACTION BUTTON  SELECTOR  *****
+        //****  ACTION 1 BUTTON  SELECTOR  ****
         //*************************************   
         @FXML
         void Action1FunctionSelector(ActionEvent event) {
@@ -323,6 +345,26 @@ public class BankApp extends Application {
                 PayMoney();
                 return;
             }
+
+            //==== TAKE OUT MONEY ====
+            if ("TakeOutMoney".equals(Action1ToCall)){
+                TakeOutMoney();
+                return;
+            }
+        }
+
+        //*************************************
+        //****  ACTION 2 BUTTON  SELECTOR  ****
+        //*************************************   
+        @FXML
+        void Action2FunctionSelector(ActionEvent event) {
+
+            //==== INTEREST  ====
+            if ("PayMeInterest".equals(Action2ToCall)){
+                PayMeInterest();
+                return;
+            }
+
         }
 
         //**************************************
@@ -356,7 +398,7 @@ public class BankApp extends Application {
         boolean CorrectData = false;
         BankAccount TemporalAccount = null;
 
-        if (TemporalBalance < 0) {
+        if (TemporalBalance <= 0) {
             TemporalType = "Nothing";
             PromptTextError.setText("No es una Cantidad Valida");
             PromptTextError.setVisible(true);
@@ -402,7 +444,7 @@ public class BankApp extends Application {
 
         int TemporalMoney = getMoneyFromString(PromptInfo1.getText());
 
-        if (TemporalMoney < 0) {
+        if (TemporalMoney <= 0) {
             PromptTextError.setText("No es una Cantidad Valida");
             PromptTextError.setVisible(true);
             return;
@@ -421,6 +463,39 @@ public class BankApp extends Application {
 
 
 
+    //*************************************************
+    //******         TAKE OUT MY MONEY        *********
+    //*************************************************
+    void TakeOutMoney(){
+
+        // === GET THE DATA ===
+        BankAccount ActualAccount = TestSubject.getAccount(NameAccount);
+
+        int TemporalMoney = getMoneyFromString(PromptInfo1.getText());
+
+        if (TemporalMoney <= 0) {
+            PromptTextError.setText("No es una Cantidad Valida");
+            PromptTextError.setVisible(true);
+            return;
+        }
+
+        if (ActualAccount.TakeOutMoney(TemporalMoney, DateLocal.toString())){
+            DateLocal.NextDay();
+            DateText.setText(DateLocal.toString());
+
+            PromptSection.setVisible(false);
+            PayButton.setDisable(false);
+            TakeOutMoneyButton.setDisable(false);
+
+            SeeMovements();
+        }
+        else {
+            PromptTextError.setText("No es posible sacar esa Cantidad");
+            PromptTextError.setVisible(true);
+            return;
+        }
+        
+    }
 
 
 
@@ -428,7 +503,63 @@ public class BankApp extends Application {
 
 
 
+    //*************************************************
+    //******            INTEREST              *********
+    //*************************************************
+    void PayMeInterest(){
 
+        // === GET THE DATA ===
+        BankAccount ActualAccount = TestSubject.getAccount(NameAccount);
+
+        ActualAccount.PayMontlyInterest();
+        DateLocal.NextDay();
+        DateText.setText(DateLocal.toString());
+
+        PromptSection.setVisible(false);
+        PayButton.setDisable(false);
+        TakeOutMoneyButton.setDisable(false);
+
+        SeeMovements();
+    }
+
+
+
+
+    //*************************************
+    //****         SAVE THE INFO       ****
+    //*************************************   
+
+
+
+    /*
+        De inicio regresa info de un archivo
+        Sino has un boton que te permita guardar la informacion
+    */
+    @FXML
+    void CloseAndSave(ActionEvent event) {
+
+
+
+        try {
+            
+            //Escribe la Info
+            FileOutputStream FileStream = new FileOutputStream("Client.ser");
+            ObjectOutputStream OutputStream = new ObjectOutputStream(FileStream);
+            OutputStream.writeObject(TestSubject);
+            OutputStream.close();
+
+            //Escribe la Info
+            FileStream = new FileOutputStream("Date.ser");
+            OutputStream = new ObjectOutputStream(FileStream);
+            OutputStream.writeObject(DateLocal);
+            OutputStream.close();
+
+        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
+        }
+
+        System.out.println("Todo bien");
+    }
 
 
 
@@ -456,6 +587,8 @@ public class BankApp extends Application {
      * =====================================================*/
     private Client TestSubject = new Client("Willy");
     private String Action1ToCall = "Nothing";
+    private String Action2ToCall = "Nothing";
+    private String SaveOrRetrived = "Retrived";
     private String NameAccount = "Nothing";
     private Date DateLocal = new Date(Date.Now());
 

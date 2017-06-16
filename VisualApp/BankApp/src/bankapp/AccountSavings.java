@@ -15,19 +15,12 @@ public class AccountSavings extends BankAccount implements Taxes{
 	public AccountSavings(int Balance, Date ApertureDate, double Rate){
 		super(Balance, ApertureDate);											//Call daddy
 		this.InterestRate = Rate;												//Interests
-	}
-
-	public AccountSavings(int Balance, String ApertureDate, double Rate){		//Create an BankAccount with $$
-		this(Balance, new Date(ApertureDate), Rate);							//Call daddy
+		this.Type = "Savings";
 	}
 
 	public AccountSavings(Date ApertureDate, double Rate){							
 		this(0, ApertureDate, Rate);											//Create an BankAccount with $0
 	}				
-
-	public AccountSavings(String ApertureDate, double Rate){
-		this(0, new Date(ApertureDate), Rate);									//Create an BankAccount with $0
-	}
 
 	public AccountSavings(double Rate){this(0, new Date(Date.Now()), Rate);}	//Create an BankAccount with $0
 

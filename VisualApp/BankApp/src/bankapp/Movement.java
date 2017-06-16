@@ -52,7 +52,7 @@ public class Movement {
             String Data = "";
 
             Data += "Concepto: "+Concept+" Autor: "+Author;
-            Data += ("\nCantidad: $"+HowMuch+" Actual Balance: "+Balance);
+            Data += ("\nCantidad: "+HowMuch+" Actual Balance: "+Balance);
             
             return Data;
       }

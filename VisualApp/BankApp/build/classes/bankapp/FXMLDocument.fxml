@@ -41,7 +41,7 @@
       <AnchorPane id="MoneySection" fx:id="PromptSection" layoutX="-12.0" layoutY="235.0" prefHeight="343.0" prefWidth="722.0" style="-fx-background-color: #e0e0e0; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0.0, 0.0);" visible="false">
          <children>
       
-            <JFXButton id="ReportButton" fx:id="ActionButton2" buttonType="RAISED" disable="true" layoutX="421.0" layoutY="116.0" prefHeight="71.0" prefWidth="223.0" ripplerFill="WHITE" style="-fx-background-color: #009688;" text="Genera Reporte" textFill="#edecf5">
+            <JFXButton id="ReportButton" fx:id="ActionButton2" buttonType="RAISED" disable="true" layoutX="421.0" layoutY="116.0" onAction="#Action2FunctionSelector" prefHeight="71.0" prefWidth="223.0" ripplerFill="WHITE" style="-fx-background-color: #009688;" text="Genera Reporte" textFill="#edecf5">
                <font>
                   <Font size="16.0" />
                </font>
@@ -111,6 +111,11 @@
          </children>
       </AnchorPane>
       <JFXButton id="TakeOutMoneyButton" fx:id="InfoAccountButton" buttonType="RAISED" disable="true" layoutX="571.0" layoutY="152.0" onAction="#setInfoSectionToSeeAccount" prefHeight="37.0" prefWidth="107.0" ripplerFill="WHITE" style="-fx-background-color: #26A69A;" text="Info" textFill="#edecf5">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton id="PayButton" fx:id="CloseAndSaveData" buttonType="RAISED" layoutX="454.0" layoutY="477.0" onAction="#CloseAndSave" prefHeight="64.0" prefWidth="215.0" ripplerFill="WHITE" style="-fx-background-color: #F4511E;" text="Salvar Datos y Salir" textFill="#edecf5">
          <font>
             <Font size="16.0" />
          </font>
