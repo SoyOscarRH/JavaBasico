@@ -104,5 +104,14 @@ public class AccountCheques extends BankAccount implements Serializable{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public String toString(){
+        String Data = "Account: ";
+        Data += " ID: " + BankAccountNumber;
+        Data += " Date: " + ApertureDate.toString();
+        Data += " Balance: " + "$"+String.valueOf(Balance/100)+"."+String.valueOf(ShowZeros(Balance%100));
+        Data += " SobreGiro: " + "$"+String.valueOf(SobreGiro/100)+"."+String.valueOf(ShowZeros(SobreGiro%100));
+
+        return Data;
+    }
 
 }	

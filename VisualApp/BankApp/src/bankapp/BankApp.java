@@ -281,6 +281,15 @@ public class BankApp extends Application implements Serializable {
 
             Action1ToCall = "PayMoney";
 
+            String Type = TestSubject.getAccount(NameAccount).getType();
+            if (!"Cheques".equals(Type)){
+                ActionButton2.setVisible(true);
+                ActionButton2.setDisable(false);
+                ActionButton2.setText("Pagame Interes");
+            }
+
+
+
             CloseAndSaveData.setVisible(false);
 
         }
@@ -314,7 +323,7 @@ public class BankApp extends Application implements Serializable {
 
 
             String Type = TestSubject.getAccount(NameAccount).getType();
-            if ("Savings".equals(Type)){
+            if (!"Cheques".equals(Type)){
                 ActionButton2.setVisible(true);
                 ActionButton2.setDisable(false);
                 ActionButton2.setText("Pagame Interes");
@@ -427,6 +436,12 @@ public class BankApp extends Application implements Serializable {
             if  ("Cheques".equals(TemporalType)){
                 CorrectData = true;
                 TemporalAccount = new AccountCheques(TemporalBalance, DateLocal, 10000);
+            }
+
+            // === GET ALL POSIBLE ACCOUNTS ===
+            if  ("Credito".equals(TemporalType)){
+                CorrectData = true;
+                TemporalAccount = new AccountCredit(TemporalBalance, DateLocal, 0.1);
             }
 
             // === ADD TO THE ACCOUNT NOW ===
