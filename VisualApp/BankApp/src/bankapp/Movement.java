@@ -1,8 +1,9 @@
 package bankapp;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Movement {
+public class Movement implements Serializable{
 	private String Concept;
 	private String Author;
 	private String HowMuch;

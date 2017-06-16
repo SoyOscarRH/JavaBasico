@@ -3,10 +3,11 @@
 // ===================================================================================
 
 package bankapp;
+import java.io.Serializable;
 import java.util.*;																//Library
 import java.time.*;																//Library
 
-public class AccountSavings extends BankAccount implements Taxes{ 
+public class AccountSavings extends BankAccount implements Taxes, Serializable{ 
 
 	// ====== ATRIBUTES OF AN OBJECT ============ 
 	private double InterestRate;
@@ -15,7 +16,7 @@ public class AccountSavings extends BankAccount implements Taxes{
 	public AccountSavings(int Balance, Date ApertureDate, double Rate){
 		super(Balance, ApertureDate);											//Call daddy
 		this.InterestRate = Rate;												//Interests
-		this.Type = "Savings";
+		this.Type = "Ahorros";
 	}
 
 	public AccountSavings(Date ApertureDate, double Rate){							

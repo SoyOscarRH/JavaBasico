@@ -4,10 +4,11 @@ package bankapp;
 // =============================    SUPER CLASS: ACCOUNT  ============================
 // ===================================================================================
 
+import java.io.Serializable;
 import java.util.*;                                                             //Library
 import java.time.*;                                                             //Library
 
-public abstract class BankAccount { 
+public abstract class BankAccount implements Serializable{ 
 
     //============================================================
     // ==== STATIC CLASS ATRIBUTES AND METHODS: SERIAL NUMBER ====
@@ -43,7 +44,7 @@ public abstract class BankAccount {
         protected int Balance;                                                      //Balance
         protected Date ApertureDate;                                                //Aperture day
         protected ArrayList<Movement> MovementData;                                 //Info on change
-        protected String Type;                                                      //Info on change
+        public String Type;                                                         //Info on change
 
         // ====== CONSTRUCTORS  =====================
         public BankAccount(int Balance, Date ApertureDate){

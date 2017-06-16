@@ -1,4 +1,5 @@
 package bankapp;
+import java.io.Serializable;
 import java.util.*;
 
 
@@ -6,7 +7,7 @@ import java.util.*;
 // =======================================================
 // ===============  		 CLIENT 	   ===============
 // =======================================================
-public class Client {
+public class Client implements Serializable {
 	private HashMap<String, BankAccount> Accounts;
 	private String NameClient;
 
@@ -39,6 +40,10 @@ public class Client {
 	public void ReportState(){
 		System.out.println("== REPORT STATE ==\n");
 
+	}
+
+	public HashMap<String, BankAccount> getAccounts(){
+		return Accounts;
 	}
 
 

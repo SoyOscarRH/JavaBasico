@@ -1,8 +1,9 @@
 package bankapp;
+import java.io.Serializable;
 import static java.lang.Integer.parseInt;
 import java.util.*;
 
-public class Date{
+public class Date implements Serializable{
     public static String Now(){
         return "12/02/2017";
     }

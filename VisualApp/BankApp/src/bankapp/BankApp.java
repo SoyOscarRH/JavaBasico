@@ -13,12 +13,17 @@ import javafx.stage.Stage;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.collections.ObservableList;
 
 
@@ -26,13 +31,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import sun.rmi.runtime.Log;
 
 
 
 
 
 
-public class BankApp extends Application {
+public class BankApp extends Application implements Serializable {
 
     //*********************************************************************
     //**********************   AUXILIAR FUNCTION     **********************
@@ -156,6 +162,9 @@ public class BankApp extends Application {
             InformationText.setText("");
 
             ComboBoxInfo.getItems().clear();
+
+            //SAVE BUTTON
+            CloseAndSaveData.setVisible(true);
         }
 
 
@@ -272,6 +281,7 @@ public class BankApp extends Application {
 
             Action1ToCall = "PayMoney";
 
+            CloseAndSaveData.setVisible(false);
 
         }
 
@@ -312,6 +322,8 @@ public class BankApp extends Application {
 
             Action1ToCall = "TakeOutMoney";
             Action2ToCall = "PayMeInterest";
+
+            CloseAndSaveData.setVisible(false);
         }
 
 
@@ -392,45 +404,56 @@ public class BankApp extends Application {
     void AddAccount(){
 
         // === GET THE DATA ===
-        String TemporalType = PromptInfo1.getText();
-        int TemporalBalance = getMoneyFromString(PromptInfo2.getText());
+        try {
+            String TemporalType = PromptInfo1.getText();
+            int TemporalBalance = getMoneyFromString(PromptInfo2.getText());
 
-        boolean CorrectData = false;
-        BankAccount TemporalAccount = null;
+            boolean CorrectData = false;
+            BankAccount TemporalAccount = null;
 
-        if (TemporalBalance <= 0) {
-            TemporalType = "Nothing";
-            PromptTextError.setText("No es una Cantidad Valida");
-            PromptTextError.setVisible(true);
+            if (TemporalBalance <= 0) {
+                TemporalType = "Nothing";
+                PromptTextError.setText("No es una Cantidad Valida");
+                PromptTextError.setVisible(true);
+            }
+
+            // === GET ALL POSIBLE ACCOUNTS ===
+            if  ("Ahorros".equals(TemporalType)){
+                CorrectData = true;
+                TemporalAccount = new AccountSavings(TemporalBalance, DateLocal, 0.2);
+            }
+
+            // === ADD TO THE ACCOUNT NOW ===
+            if (CorrectData){
+                TestSubject.AddAccount(TemporalAccount);
+                PromptTextError.setVisible(false);
+
+                ObservableList<String> Options = ComboBoxAccount.getItems();
+                Options.add(TemporalType+" - "+TemporalAccount.getID());
+                ComboBoxAccount.setItems(Options);
+
+                System.out.println("We created a: "+ TemporalAccount);
+
+                PromptSection.setVisible(false);
+                InfoAccountButton.setDisable(false);
+                DateLocal.NextDay();
+                DateText.setText(DateLocal.toString());
+
+                CloseAndSaveData.setVisible(true);
+                CloseAndSaveData.setText("Salva Información");
+                SaveOrRetrived = "SaveInfo";
+            }
+            else {
+                PromptTextError.setText("No es un Tipo Valido");
+                PromptTextError.setVisible(true);
+            }
+
         }
-
-        // === GET ALL POSIBLE ACCOUNTS ===
-        if  ("Ahorros".equals(TemporalType)){
-            CorrectData = true;
-            TemporalAccount = new AccountSavings(TemporalBalance, DateLocal, 0.2);
-        }
-
-
-        // === ADD TO THE ACCOUNT NOW ===
-        if (CorrectData){
-            TestSubject.AddAccount(TemporalAccount);
-            PromptTextError.setVisible(false);
-
-            ObservableList<String> Options = ComboBoxAccount.getItems();
-            Options.add(TemporalType+" - "+TemporalAccount.getID());
-            ComboBoxAccount.setItems(Options);
-
-            System.out.println("We created a: "+ TemporalAccount);
-
-            PromptSection.setVisible(false);
-            InfoAccountButton.setDisable(false);
-            DateLocal.NextDay();
-            DateText.setText(DateLocal.toString());
-        }
-        else {
+        catch (Exception e) {
             PromptTextError.setText("No es un Tipo Valido");
             PromptTextError.setVisible(true);
         }
+
     }
 
 
@@ -439,47 +462,19 @@ public class BankApp extends Application {
     //*************************************************
     void PayMoney(){
 
-        // === GET THE DATA ===
-        BankAccount ActualAccount = TestSubject.getAccount(NameAccount);
+        try {
+            // === GET THE DATA ===
+            BankAccount ActualAccount = TestSubject.getAccount(NameAccount);
 
-        int TemporalMoney = getMoneyFromString(PromptInfo1.getText());
+            int TemporalMoney = getMoneyFromString(PromptInfo1.getText());
 
-        if (TemporalMoney <= 0) {
-            PromptTextError.setText("No es una Cantidad Valida");
-            PromptTextError.setVisible(true);
-            return;
-        }
+            if (TemporalMoney <= 0) {
+                PromptTextError.setText("No es una Cantidad Valida");
+                PromptTextError.setVisible(true);
+                return;
+            }
 
-        ActualAccount.AddToBankAccount(TemporalMoney, DateLocal.toString());
-        DateLocal.NextDay();
-        DateText.setText(DateLocal.toString());
-
-        PromptSection.setVisible(false);
-        PayButton.setDisable(false);
-        TakeOutMoneyButton.setDisable(false);
-
-        SeeMovements();
-    }
-
-
-
-    //*************************************************
-    //******         TAKE OUT MY MONEY        *********
-    //*************************************************
-    void TakeOutMoney(){
-
-        // === GET THE DATA ===
-        BankAccount ActualAccount = TestSubject.getAccount(NameAccount);
-
-        int TemporalMoney = getMoneyFromString(PromptInfo1.getText());
-
-        if (TemporalMoney <= 0) {
-            PromptTextError.setText("No es una Cantidad Valida");
-            PromptTextError.setVisible(true);
-            return;
-        }
-
-        if (ActualAccount.TakeOutMoney(TemporalMoney, DateLocal.toString())){
+            ActualAccount.AddToBankAccount(TemporalMoney, DateLocal.toString());
             DateLocal.NextDay();
             DateText.setText(DateLocal.toString());
 
@@ -489,12 +484,50 @@ public class BankApp extends Application {
 
             SeeMovements();
         }
-        else {
-            PromptTextError.setText("No es posible sacar esa Cantidad");
+        catch (Exception e) {
+            PromptTextError.setText("No es un Tipo Valido");
             PromptTextError.setVisible(true);
-            return;
         }
-        
+    }
+
+
+
+    //*************************************************
+    //******         TAKE OUT MY MONEY        *********
+    //*************************************************
+    void TakeOutMoney(){
+        try {
+            // === GET THE DATA ===
+            BankAccount ActualAccount = TestSubject.getAccount(NameAccount);
+
+            int TemporalMoney = getMoneyFromString(PromptInfo1.getText());
+
+            if (TemporalMoney <= 0) {
+                PromptTextError.setText("No es una Cantidad Valida");
+                PromptTextError.setVisible(true);
+                return;
+            }
+
+            if (ActualAccount.TakeOutMoney(TemporalMoney, DateLocal.toString())){
+                DateLocal.NextDay();
+                DateText.setText(DateLocal.toString());
+
+                PromptSection.setVisible(false);
+                PayButton.setDisable(false);
+                TakeOutMoneyButton.setDisable(false);
+
+                SeeMovements();
+            }
+            else {
+                PromptTextError.setText("No es posible sacar esa Cantidad");
+                PromptTextError.setVisible(true);
+                return;
+            }
+        }
+        catch (Exception e) {
+            PromptTextError.setText("No es un Tipo Valido");
+            PromptTextError.setVisible(true);
+        }        
     }
 
 
@@ -538,27 +571,60 @@ public class BankApp extends Application {
     @FXML
     void CloseAndSave(ActionEvent event) {
 
+        if ("Retrived".equals(SaveOrRetrived)){
 
+            try {
+                FileInputStream FileStream = new FileInputStream("Client.ser");
+                ObjectInputStream OutputStream = new ObjectInputStream(FileStream);
+                TestSubject = (Client) OutputStream.readObject(); 
+                OutputStream.close();
 
-        try {
-            
-            //Escribe la Info
-            FileOutputStream FileStream = new FileOutputStream("Client.ser");
-            ObjectOutputStream OutputStream = new ObjectOutputStream(FileStream);
-            OutputStream.writeObject(TestSubject);
-            OutputStream.close();
+                FileStream = new FileInputStream("Date.ser");
+                OutputStream = new ObjectInputStream(FileStream);
+                DateLocal = (Date) OutputStream.readObject(); 
+                OutputStream.close();
 
-            //Escribe la Info
-            FileStream = new FileOutputStream("Date.ser");
-            OutputStream = new ObjectOutputStream(FileStream);
-            OutputStream.writeObject(DateLocal);
-            OutputStream.close();
+                System.out.println("Pude sacar datos");
+                System.out.println(TestSubject);
 
-        } catch (FileNotFoundException e) {
-        } catch (IOException e) {
+                ObservableList<String> Options = ComboBoxAccount.getItems();
+                BankAccount TemporalAccount = null;
+
+                for (Map.Entry<String, BankAccount> entry: TestSubject.getAccounts().entrySet() ) {
+
+                    System.out.println(entry.getKey()+" : "+entry.getValue());
+                    TemporalAccount = entry.getValue();
+                    Options.add(TemporalAccount.Type+" - "+TemporalAccount.getID());
+                }
+                
+                ComboBoxAccount.setItems(Options);
+            }
+            catch (Exception e) {
+                System.out.println("No pude sacar datos");
+            }
+        }
+        else {
+            try {
+                //Escribe la Info
+                FileOutputStream FileStream = new FileOutputStream("Client.ser");
+                ObjectOutputStream OutputStream = new ObjectOutputStream(FileStream);
+                OutputStream.writeObject(TestSubject);
+                OutputStream.close();
+
+                //Escribe la Info
+                FileStream = new FileOutputStream("Date.ser");
+                OutputStream = new ObjectOutputStream(FileStream);
+                OutputStream.writeObject(DateLocal);
+                OutputStream.close();
+                System.out.println("Todo bien");
+            } 
+            catch (Exception e) {
+                System.out.println("No pude guardar datos");
+
+                System.out.println("Error when saving to file."+ e); 
+            }
         }
 
-        System.out.println("Todo bien");
     }
 
 

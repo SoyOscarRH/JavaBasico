@@ -62,7 +62,7 @@
                   <Font name="Lucida Grande" size="20.0" />
                </font>
             </Text>
-            <JFXButton id="ActionButton" fx:id="BorrarSelection" buttonType="RAISED" layoutX="65.0" layoutY="236.0" onAction="#setOriginal" prefHeight="37.0" prefWidth="215.0" ripplerFill="WHITE" style="-fx-background-color: #f44336;" text="Deshacer Operación" textFill="#edecf5">
+            <JFXButton id="ActionButton" fx:id="BorrarSelection" buttonType="RAISED" layoutX="409.0" layoutY="251.0" onAction="#setOriginal" prefHeight="37.0" prefWidth="215.0" ripplerFill="WHITE" style="-fx-background-color: #f44336;" text="Deshacer Operación" textFill="#edecf5">
                <font>
                   <Font size="16.0" />
                </font>
@@ -110,12 +110,12 @@
             </Text>
          </children>
       </AnchorPane>
-      <JFXButton id="TakeOutMoneyButton" fx:id="InfoAccountButton" buttonType="RAISED" disable="true" layoutX="571.0" layoutY="152.0" onAction="#setInfoSectionToSeeAccount" prefHeight="37.0" prefWidth="107.0" ripplerFill="WHITE" style="-fx-background-color: #26A69A;" text="Info" textFill="#edecf5">
+      <JFXButton id="PayButton" fx:id="CloseAndSaveData" buttonType="RAISED" layoutX="39.0" layoutY="484.0" onAction="#CloseAndSave" prefHeight="64.0" prefWidth="215.0" ripplerFill="WHITE" style="-fx-background-color: #F4511E;" text="Recuperar Datos" textFill="#edecf5">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton id="PayButton" fx:id="CloseAndSaveData" buttonType="RAISED" layoutX="454.0" layoutY="477.0" onAction="#CloseAndSave" prefHeight="64.0" prefWidth="215.0" ripplerFill="WHITE" style="-fx-background-color: #F4511E;" text="Salvar Datos y Salir" textFill="#edecf5">
+      <JFXButton id="TakeOutMoneyButton" fx:id="InfoAccountButton" buttonType="RAISED" disable="true" layoutX="571.0" layoutY="152.0" onAction="#setInfoSectionToSeeAccount" prefHeight="37.0" prefWidth="107.0" ripplerFill="WHITE" style="-fx-background-color: #26A69A;" text="Info" textFill="#edecf5">
          <font>
             <Font size="16.0" />
          </font>
