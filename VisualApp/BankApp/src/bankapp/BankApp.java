@@ -441,7 +441,7 @@ public class BankApp extends Application implements Serializable {
             // === GET ALL POSIBLE ACCOUNTS ===
             if  ("Credito".equals(TemporalType)){
                 CorrectData = true;
-                TemporalAccount = new AccountCredit(TemporalBalance, DateLocal, 0.1);
+                TemporalAccount = new AccountCredit(TemporalBalance, DateLocal, 0.1, 30000);
             }
 
             // === ADD TO THE ACCOUNT NOW ===

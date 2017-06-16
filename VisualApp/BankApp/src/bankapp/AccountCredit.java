@@ -11,20 +11,16 @@ public class AccountCredit extends BankAccount implements Taxes, Serializable{
 	// ====== ATRIBUTES OF AN OBJECT ============ 
 	private double InterestRate;
 	private int Deficit;
+    private int MaxDeficit;
 
 	// ====== CONSTRUCTORS  =====================
-	public AccountCredit(int Balance, Date ApertureDate, double Rate){
+	public AccountCredit(int Balance, Date ApertureDate, double Rate, int MaxDeficit){
 		super(Balance, ApertureDate);											//Call daddy
 		this.InterestRate = Rate;												//Interests
 		this.Type = "Credito";
 		this.Deficit = 0;
+        this.MaxDeficit = (MaxDeficit*100);
 	}
-
-	public AccountCredit(Date ApertureDate, double Rate){							
-		this(0, ApertureDate, Rate);											//Create an BankAccount with $0
-	}				
-
-	public AccountCredit(double Rate){this(0, new Date(Date.Now()), Rate);}	//Create an BankAccount with $0
 
 
 	public void PayMontlyInterest(){
@@ -83,6 +79,42 @@ public class AccountCredit extends BankAccount implements Taxes, Serializable{
 
         MovementData.add(new Movement(Info));
     }
+
+    // ===========================
+    // ===== TAKE OUT MY MONEY ===
+    // ===========================
+    public boolean TakeOutMoney(int HowMuch, String Date){                      
+        return TakeOutMoney(HowMuch, Date, "Unknow Source");                    //If you dont tell me who do it!
+    }
+
+    public boolean TakeOutMoney(int HowMuch, String StrDate, String Source){
+        HowMuch *= 100;                                                         //You send me $, I work in cents
+        int HowMuchTemporal = HowMuch;
+
+        if ((Balance - HowMuchTemporal) >= 0) Balance -= HowMuchTemporal;                       //If you have enough $
+        else if ( (Balance+MaxDeficit) >= HowMuchTemporal ) {
+            HowMuchTemporal -= Balance;
+            Balance = 0;
+            Deficit -= HowMuchTemporal;
+        }
+        else {
+            return false;
+        }
+
+        Map Info = new HashMap<>();
+        String SobreGiroString = ("Deficit: $"+String.valueOf(Deficit/100)+"."+String.valueOf(ShowZeros(Deficit%100)));
+        SobreGiroString += ("\n" + "Balance: " +"$"+String.valueOf(Balance/100)+"."+String.valueOf(ShowZeros(Balance%100)));
+
+        Info.put("Concept", "TakeOutMoney");
+        Info.put("Author", Source);
+        Info.put("HowMuch", "$"+String.valueOf(HowMuch/100)+"."+String.valueOf(ShowZeros(HowMuch%100)));
+        Info.put("Balance", SobreGiroString);
+
+        MovementData.add(new Movement(Info));
+        return true;                                                            //You make it!
+    }
+
+
 
     @Override
     public void PayYearlyInterest() {
