@@ -2,7 +2,7 @@
 
 <center>
 	
-![Alt Image Text](Documentation/Graphics/Art1.png)
+![Alt Image Text](Graphics/Art1.png)
 
 [**Code Forces**](CodeForces/)
 
