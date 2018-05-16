@@ -4,6 +4,8 @@
 	
 ![Alt Image Text](Graphics/Art1.png)
 
+![Alt Image Text](Graphics/Art2.png)
+
 [**Code Forces**](CodeForces/)
 
 </center>
