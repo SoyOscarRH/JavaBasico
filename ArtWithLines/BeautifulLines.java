@@ -34,7 +34,6 @@ public class BeautifulLines extends JPanel {
             g.setColor(Color.GREEN);
             g.drawLine(Middle - Step, End, End - b, Middle + Step);
 
-
             g.setColor(Color.PINK);
             g.drawLine(Start + Step , Start + Step, Middle - Step, Middle + Step);
 
