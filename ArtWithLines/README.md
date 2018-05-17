@@ -3,20 +3,17 @@
 ## Art with Lines (Examples)
 <center>	
 
-![test image size](Graphics/Art1.png){:height="50%" width="50%"}
-![test image size](Graphics/Art2.png){:height="50%" width="50%"}
-![test image size](Graphics/Art3.png){:height="50%" width="50%"}
-![test image size](Graphics/Art4.png){:height="50%" width="50%"}
+<img src="" width="whatever" height="whatever">
+
+<img src="Graphics/Art1.png" width="50%" height="50%">
+
+<img src="Graphics/Art2.png" width="50%" height="50%">
+
+<img src="Graphics/Art3.png" width="50%" height="50%">
+
+<img src="Graphics/Art4.png" width="50%" height="50%">
 
 </center>
 
 
 ## Art with Lines (Examples)
-<center>	
-
-![test image size](Graphics/Art1.png){:height="50%" width="50%"}
-![test image size](Graphics/Art2.png){:height="50%" width="50%"}
-![test image size](Graphics/Art3.png){:height="50%" width="50%"}
-![test image size](Graphics/Art4.png){:height="50%" width="50%"}
-
-</center>
