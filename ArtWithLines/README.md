@@ -32,15 +32,15 @@ Remember:
 
 Let's see an example:
 <center>	
-	<img src="Graphics/BezierCurveExample1.png" width="80%" height="50%">
+	<img src="Graphics/BezierCurveExample01.png" width="80%" height="50%">
 </center>
 
 <center>	
-	<img src="Graphics/BezierCurveExample2.png" width="80%" height="50%">
+	<img src="Graphics/BezierCurveExample02.png" width="80%" height="50%">
 </center>
 
 <center>	
-	<img src="Graphics/BezierCurveExample3.png" width="80%" height="50%">
+	<img src="Graphics/BezierCurveExample03.png" width="80%" height="50%">
 </center>
 
 
