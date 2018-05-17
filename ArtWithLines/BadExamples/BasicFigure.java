@@ -25,7 +25,7 @@ public class BasicFigure extends JPanel {
 
         int XShift = 100, YShift = 100;
         int XScale = 1, YScale = 1;
-        double AngleRotation = Math.toRadians(5);
+        double AngleRotation = Math.toRadians(0);
         int WindowsSize = 700;
 
         AffineTransform Tranformation = new AffineTransform();
