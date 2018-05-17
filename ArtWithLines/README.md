@@ -33,17 +33,14 @@ Remember:
 Let's see an example:
 <center>	
 	<img src="Graphics/BezierCurveExample1.png" width="80%" height="50%">
-	<p>Resolution: 20, Size = 600, AngleDefinition = 90°</p>
 </center>
 
 <center>	
 	<img src="Graphics/BezierCurveExample2.png" width="80%" height="50%">
-	<p>Resolution: 10, Size = 500, AngleDefinition = 60°</p>
 </center>
 
 <center>	
 	<img src="Graphics/BezierCurveExample3.png" width="80%" height="50%">
-	<p>Resolution: 30, Size = 650, AngleDefinition = 30°</p>
 </center>
 
 
