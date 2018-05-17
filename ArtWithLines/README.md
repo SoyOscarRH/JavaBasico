@@ -50,7 +50,7 @@ Let's see an example:
 	<img src="Graphics/Art2.png" width="80%" height="50%">
 	<img src="Graphics/Art3.png" width="80%" height="50%">
     <img src="Graphics/Art4.png" width="80%" height="50%">
-    <img src="Graphics/Art6.png" width="80%" height="50%">
+    <img src="Graphics/Art5.png" width="80%" height="50%">
 	<img src="Graphics/Artx.png" width="80%" height="50%">
 </center>
 
