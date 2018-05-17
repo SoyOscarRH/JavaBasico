@@ -2,17 +2,10 @@
 
 ## Art with Lines (Examples)
 <center>	
-
-<img src="" width="whatever" height="whatever">
-
-<img src="Graphics/Art1.png" width="50%" height="50%">
-
-<img src="Graphics/Art2.png" width="50%" height="50%">
-
-<img src="Graphics/Art3.png" width="50%" height="50%">
-
-<img src="Graphics/Art4.png" width="50%" height="50%">
-
+	<img src="Graphics/Art1.png" width="80%" height="50%">
+	<img src="Graphics/Art2.png" width="80%" height="50%">
+	<img src="Graphics/Art3.png" width="80%" height="50%">
+	<img src="Graphics/Art4.png" width="80%" height="50%">
 </center>
 
 
