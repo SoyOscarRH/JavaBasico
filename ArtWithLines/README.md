@@ -26,9 +26,9 @@ public void DrawBezierCurve(Graphics g, int Size, int Resolution, double AngleDe
 ``` 
 
 Remember:
-	- **Size** Is the size to the square to contain your curve
-	- **Resolution** Is the size of the step, smaller equals sharper
-	- **AngleDefinition** Is the angle (in radians) of the curve
+* **Size** Is the size to the square to contain your curve
+* **Resolution** Is the size of the step, smaller equals sharper
+* **AngleDefinition** Is the angle (in radians) of the curve
 
 Let's see an example:
 <center>	
