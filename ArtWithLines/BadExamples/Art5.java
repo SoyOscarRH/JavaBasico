@@ -8,7 +8,7 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
  
-public class Art7 extends JPanel {
+public class Art5 extends JPanel {
  
     public void paintComponent(Graphics g) {
 
@@ -43,7 +43,7 @@ public class Art7 extends JPanel {
     }
  
     public static void main(String[] args) {
-        Art7 Canvas = new Art7();
+        Art5 Canvas = new Art5();
         JFrame BeautifulLinesFrame = new JFrame("Beautiful Lines");
         
         BeautifulLinesFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

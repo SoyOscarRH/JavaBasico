@@ -67,52 +67,22 @@ public class Art4 extends JPanel {
             DrawBezierCurve(g, ShapeSize, Resolution, AngleDefinition);
         }
 
-        XShift = -300;
-        YShift = -240;
+        int XShifts2[] = {-300, -972, 40};
+        int YShifts2[] = {-240, 540, 733};
 
-        AngleRotation = Math.toRadians(-60);
+        for (int i = 0; i < 3; i++) {
+            AngleRotation = Math.toRadians(-120*i - 60);
             
-        AffineTransform T2 = new AffineTransform();
-        T2.translate(XShift, YShift);  
-        T2.rotate(AngleRotation, ShapeSize, 0);
-        T2.scale(XScale, YScale);
-        
-        ((Graphics2D) g).setTransform(T2);
-
-        g.setColor(new Color(92,107,192));
-        DrawBezierCurve(g, ShapeSize, Resolution, AngleDefinition);
-
-
-        XShift = -972;
-        YShift = 540;
-
-        AngleRotation = Math.toRadians(-180);
+            AffineTransform Tranformation = new AffineTransform();
+            Tranformation.translate(XShifts2[i], YShifts2[i]);  
+            Tranformation.rotate(AngleRotation, ShapeSize, 0);
+            Tranformation.scale(XScale, YScale);
             
-        AffineTransform T3 = new AffineTransform();
-        T3.translate(XShift, YShift);  
-        T3.rotate(AngleRotation, ShapeSize, 0);
-        T3.scale(XScale, YScale);
-        
-        ((Graphics2D) g).setTransform(T3);
+            ((Graphics2D) g).setTransform(Tranformation);
 
-        g.setColor(new Color(92,107,192));
-        DrawBezierCurve(g, ShapeSize, Resolution, AngleDefinition);
-
-        XShift = 40;
-        YShift = 733;
-
-        AngleRotation = Math.toRadians(-300);
-            
-        AffineTransform T4 = new AffineTransform();
-        T4.translate(XShift, YShift);  
-        T4.rotate(AngleRotation, ShapeSize, 0);
-        T4.scale(XScale, YScale);
-        
-        ((Graphics2D) g).setTransform(T4);
-
-        g.setColor(new Color(92,107,192));
-        DrawBezierCurve(g, ShapeSize, Resolution, AngleDefinition);
-
+            g.setColor(new Color(92,107,192));
+            DrawBezierCurve(g, ShapeSize, Resolution, AngleDefinition);
+        }
 
     }
 
