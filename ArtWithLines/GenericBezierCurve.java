@@ -46,9 +46,9 @@ public class GenericBezierCurve extends JPanel {
         int XShift = 20, YShift = 20;
         double XScale = 0.8, YScale = 0.8;
         double AngleRotation = Math.toRadians(0);
-        double AngleDefinition = Math.toRadians(90);
-        int Resolution = 15;
-        int ShapeSize = WindowsSize;
+        double AngleDefinition = Math.toRadians(30);
+        int Resolution = 30;
+        int ShapeSize = 650;
 
         AffineTransform Tranformation = new AffineTransform();
         Tranformation.translate(XShift, YShift);  
@@ -57,7 +57,7 @@ public class GenericBezierCurve extends JPanel {
         
         ((Graphics2D) g).setTransform(Tranformation);
 
-        g.setColor(new Color(40,53,147));
+        g.setColor(new Color(38,50,56));
         DrawBezierCurve(g, ShapeSize, Resolution, AngleDefinition);
     }
 
